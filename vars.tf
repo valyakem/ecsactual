@@ -59,7 +59,7 @@ variable "service_desired_count" {
 }
 
 #=========ACCOUNT CREATION VARIABLES============
- variable "name" {
+ variable "accountname" {
   description = "Account name"
   type = string
   default = "pricingtool-Arca-BLANCA"
