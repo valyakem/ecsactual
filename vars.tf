@@ -1,6 +1,7 @@
-# variable "name" {
-#   description = "the name of your stack, e.g. \"demo\""
-# }
+variable "name" {
+  description = "the name of your stack, e.g. \"demo\""
+  default = "pricing-tool"
+}
 
 variable "environment" {
   description = "the name of your environment, e.g. \"prod\""
