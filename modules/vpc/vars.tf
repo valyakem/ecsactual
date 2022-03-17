@@ -20,7 +20,7 @@ variable "name" {
   default = "pricing-tool"
 }
 
-variable "name" {
+variable "environment" {
   description = "environment"
   default = "prod"
 }
