@@ -15,3 +15,8 @@ variable "availability_zones" {
   description = "List of availability zones"
 }
 
+variable "name" {
+  description = "VPC name"
+  default = "pricing-tool"
+}
+
