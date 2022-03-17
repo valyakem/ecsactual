@@ -28,7 +28,14 @@
 #     Name = "DynamoDB Terraform State Lock Table"
 #   }
 # }
-
+module "account" {
+  source                      = "./modules/account"
+  name                        = var.name
+  email                       = var.email
+  role_name                   = var.role_name
+  iam_user_access_to_billing  = var.iam_user_access_to_billing
+  parent_id = var.parent_id
+}
 module "vpc" {
   source             = "./modules/vpc"
   name               = var.name
