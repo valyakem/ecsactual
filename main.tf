@@ -30,7 +30,7 @@
 # }
 module "account" {
   source                      = "./modules/account"
-  accountname                        = var.name
+  name                        = var.accountname
   email                       = var.email
   role_name                   = var.role_name
   iam_user_access_to_billing  = var.iam_user_access_to_billing
