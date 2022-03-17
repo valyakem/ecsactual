@@ -48,7 +48,7 @@ module "vpc" {
 
 module "security_groups" {
   source         = "./modules/sec-group"
-  name           = var.pricingtoolsg
+  name           = var.name
   vpc_id         = module.vpc.id
   environment    = var.environment
   container_port = var.container_port
@@ -56,7 +56,7 @@ module "security_groups" {
 
 module "alb" {
   source              = "./modules/alb"
-  name                = var.albname
+  name                = var.name
   vpc_id              = module.vpc.id
   subnets             = module.vpc.public_subnets
   environment         = var.environment
@@ -67,7 +67,7 @@ module "alb" {
 
 module "ecr" {
   source      = "./modules/ecr"
-  name        = var.pricingtool-ecr
+  name        = var.name
   environment = var.environment
 }
 

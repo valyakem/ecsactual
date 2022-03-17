@@ -136,19 +136,8 @@ variable "uri_repo" {
 
 
 #security group variables
- variable "secgroupname" {
-  description = "security groups name"
+ variable "accountname" {
+  description = "Account name"
   type = string
-  default = "pricingtoolsg"
-}
-
-#alb secgname variable
- variable "albname" {
-  default = "pricingtool-alb"
-}
-
-
-#ercname variable
- variable "ecrname" {
-  default = "pricingtool-ecr"
+  default = "pricingtool-Arca-BLANCA"
 }
