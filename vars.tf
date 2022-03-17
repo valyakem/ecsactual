@@ -133,3 +133,22 @@ variable "uri_repo" {
   type = string
   default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
 }
+
+
+#security group variables
+ variable "secgroupname" {
+  description = "security groups name"
+  type = string
+  default = "pricingtoolsg"
+}
+
+#alb secgname variable
+ variable "albname" {
+  default = "pricingtool-alb"
+}
+
+
+#ercname variable
+ variable "ecrname" {
+  default = "pricingtool-ecr"
+}
