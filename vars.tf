@@ -133,11 +133,3 @@ variable "uri_repo" {
   type = string
   default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
 }
-
-
-#security group variables
- variable "accountname" {
-  description = "Account name"
-  type = string
-  default = "pricingtool-Arca-BLANCA"
-}
