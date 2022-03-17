@@ -47,7 +47,7 @@ module "vpc" {
 }
 
 module "security_groups" {
-  source         = "./security-groups"
+  source         = "./modules/sec-group"
   name           = var.name
   vpc_id         = module.vpc.id
   environment    = var.environment
@@ -55,7 +55,7 @@ module "security_groups" {
 }
 
 module "alb" {
-  source              = "./alb"
+  source              = "./modules/alb"
   name                = var.name
   vpc_id              = module.vpc.id
   subnets             = module.vpc.public_subnets
@@ -66,7 +66,7 @@ module "alb" {
 }
 
 module "ecr" {
-  source      = "./ecr"
+  source      = "./modules/ecr"
   name        = var.name
   environment = var.environment
 }
@@ -80,7 +80,7 @@ module "ecr" {
 # }
 
 module "ecs" {
-  source                      = "./ecs"
+  source                      = "./modules/ecs"
   name                        = var.name
   environment                 = var.environment
   region                      = var.aws-region
