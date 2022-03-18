@@ -48,11 +48,25 @@ module "vpc" {
 
 
 module "security_groups" {
-  source         = "./modules/sec-group"
-  name           = var.name
-  vpc_id         = module.vpc.cidr
-  environment    = var.environment
-  container_port = var.container_port
+  name        = "user-service"
+  description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
+  vpc_id      = module.vpc.id
+
+  ingress_cidr_blocks      = [module.vpc.cidr]
+  ingress_rules            = ["https-443-tcp"]
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 8080
+      to_port     = 8090
+      protocol    = "tcp"
+      description = "User-service ports"
+      cidr_blocks = module.vpc.cidr
+    },
+    {
+      rule        = "postgresql-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
 }
 
 module "alb" {
