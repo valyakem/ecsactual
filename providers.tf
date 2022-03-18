@@ -14,7 +14,7 @@ organization = "Next-Generation-Business-IT-Solutions"
  
   
     workspaces {
-      name = "modulestraining"
+      name = "modulestraining1"
     }
   }
 }

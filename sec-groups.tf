@@ -13,7 +13,7 @@ resource "aws_security_group" "sg1" {
   }
 
   egress {
-    description = "Allow all ip and ports outboun"
+    description = "Allow all ip and ports outbound"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -22,7 +22,7 @@ resource "aws_security_group" "sg1" {
 }
 
 resource "aws_security_group" "sg2" {
-  name        = "golang-server-alb"
+  name        = "Flask-server-alb"
   description = "Port 80"
   vpc_id      = aws_vpc.ecs-vpc.id
 
