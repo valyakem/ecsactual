@@ -48,6 +48,7 @@ module "vpc" {
 
 
 module "security_groups" {
+  source = "./modules/sec-group"
   name        = "user-service"
   description = "Security group for user-service with custom ports open within VPC, and PostgreSQL publicly open"
   vpc_id      = module.vpc.id
