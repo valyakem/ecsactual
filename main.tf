@@ -50,7 +50,7 @@ module "vpc" {
 module "security_groups" {
   source         = "./modules/sec-group"
   name           = var.name
-  vpc_id         = module.vpc.id
+  vpc_id         = module.vpc.cidr
   environment    = var.environment
   container_port = var.container_port
 }
@@ -58,7 +58,7 @@ module "security_groups" {
 module "alb" {
   source              = "./modules/alb"
   name                = var.name
-  vpc_id              = module.vpc.id
+  vpc_id              = module.vpc.cidr
   subnets             = module.vpc.public_subnets
   environment         = var.environment
   alb_security_groups = [module.security_groups.alb]
