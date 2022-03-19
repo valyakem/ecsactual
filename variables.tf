@@ -3,6 +3,7 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
+  default     = "Arca-Blanca-PricingTool" 
 }
 
 variable "enable_module" {
@@ -22,6 +23,7 @@ variable "tags" {
 #------------------------------------------------------------------------------
 variable "vpc_id" {
   description = "ID of the VPC"
+  default     = "192.168.0.0/16" 
 }
 
 #------------------------------------------------------------------------------
