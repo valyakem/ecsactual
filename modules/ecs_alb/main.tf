@@ -203,7 +203,7 @@ resource "aws_lb_target_group" "lb_https_tgs" {
     for name, config in var.https_ports : name => config
     if lookup(config, "type", "") == "" || lookup(config, "type", "") == "forward"
   }
-  name                          = "${var.name_prefix}-https-${each.value.target_group_port}"
+  name                          = "${var.name_prefix}-${each.value.target_group_port}"
   port                          = each.value.target_group_port
   protocol                      = lookup(each.value, "target_group_protocol", "") == "" ? "HTTPS" : each.value.target_group_protocol
   vpc_id                        = var.vpc_id
