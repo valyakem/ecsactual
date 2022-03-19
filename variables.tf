@@ -32,11 +32,13 @@ variable "vpc_id" {
 variable "container_name" {
   type        = string
   description = "The name of the container. Up to 255 characters ([a-z], [A-Z], [0-9], -, _ allowed)"
+  default     = "ecs_pricing_tool"
 }
 
 variable "container_image" {
   type        = string
   description = "The image used to start the container. Images in the Docker Hub registry available by default"
+  default     = "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
 }
 
 variable "container_memory" {
@@ -460,11 +462,13 @@ variable "enable_autoscaling" {
 variable "public_subnets_ids" {
   description = "The public subnets associated with the task or service."
   type        = list(any)
+  default     = [ "192.168.0.0/19", "192.168.32.0/19", "192.168.64.0/19", "192.168.96.0/19" ]
 }
 
 variable "private_subnets_ids" {
   description = "The private subnets associated with the task or service."
   type        = list(any)
+  default     = [ "192.168.128.0/19", "192.168.160.0/19", "192.168.192.0/19", "192.168.224.0/19" ]
 }
 
 variable "ecs_service_security_groups" {
