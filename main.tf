@@ -13,7 +13,6 @@ module "base-network" {
 #------------------------------------------------------------------------------
 module "ecs-cluster" {
   source  = "./modules/ecs_cluster"
-  version = "1.0.8"
   # source  = "../terraform-aws-ecs-cluster"
 
   name = var.name_prefix
@@ -25,7 +24,6 @@ module "ecs-cluster" {
 #------------------------------------------------------------------------------
 module "td" {
   source  = "./modules/tasks_definition_service"
-  version = "1.0.25"
   # source  = "../terraform-aws-ecs-fargate-task-definition"
 
   name_prefix                  = var.name_prefix
@@ -83,8 +81,7 @@ module "td" {
 # ECS Service
 #------------------------------------------------------------------------------
 module "ecs-fargate-service" {
-  source  = "./modules/fargate_service"
-  version = "2.0.21"
+  source  = "./modules/ecs_fargate_service"
   # source  = "../terraform-aws-ecs-fargate-service"
 
   name_prefix = var.name_prefix

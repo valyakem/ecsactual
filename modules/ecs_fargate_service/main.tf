@@ -2,8 +2,7 @@
 # AWS LOAD BALANCER
 #------------------------------------------------------------------------------
 module "ecs-alb" {
-  source  = "cn-terraform/ecs-alb/aws"
-  version = "1.0.16"
+  source  = "../ecs_alb"
 
   name_prefix = var.name_prefix
   vpc_id      = var.vpc_id
@@ -179,8 +178,7 @@ resource "aws_security_group_rule" "ingress_through_https" {
 module "ecs-autoscaling" {
   count = var.enable_autoscaling ? 1 : 0
 
-  source  = "cn-terraform/ecs-service-autoscaling/aws"
-  version = "1.0.6"
+  source  = "../ecs_autoscaling_group"
 
   name_prefix               = var.name_prefix
   ecs_cluster_name          = var.ecs_cluster_name
