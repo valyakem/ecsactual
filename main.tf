@@ -1,6 +1,6 @@
 module "vpc" {
   source             = "./modules/vpc"
-  name               = var.name
+  name               = var.vpc_name
   cidr               = var.cidr
 #   private_subnets    = var.private_subnets
   public_subnets     = var.public_subnets

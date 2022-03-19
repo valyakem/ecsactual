@@ -1,4 +1,5 @@
 resource "aws_vpc" "ecs-vpc" {
+  name       = "${var.ecs_name}"
   cidr_block = "${var.cidr}"
 
   tags = {

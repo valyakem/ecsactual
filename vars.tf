@@ -18,10 +18,10 @@ variable "uri_repo" {
   default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
 }
 
-# variable "environment" {
-#   description = "the name of your environment, e.g. \"prod\""
-#   default     = "prod"
-# }
+variable "vpc_name" {
+  description = "the name of your environment, e.g. \"prod\""
+  default     = "Arca_Blanca_PricingTool_VPC"
+}
 
 variable "availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"

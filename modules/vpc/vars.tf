@@ -24,3 +24,8 @@ variable "vpc_id" {
   type    = string
   default = "145.0.0.0/16"
 }
+
+variable "ecs_name" {
+  type    = string
+  default = "ecs_vpc"
+}
