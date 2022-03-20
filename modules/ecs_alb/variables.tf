@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
-  default     = "inmarsatarcablancapricingtools3"
+  default     = "imsabpricingtools22"
 }
 
 variable "tags" {
