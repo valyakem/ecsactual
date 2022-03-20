@@ -302,6 +302,5 @@ variable "additional_certificates_arn_for_https_listeners" {
 
 variable "subnets" {
   description = "Comma separated list of subnet IDs"
-  type = list(string)
   default     = ["192.168.16.0/20", "192.168.32.0/20", "192.168.48.0/20", "192.168.64.0/20"]
 }
