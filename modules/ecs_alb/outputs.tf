@@ -150,7 +150,7 @@ output "lb_https_listeners_arns" {
 }
 
 #------------------------------------------------------------------------------
-# S3 LB Logging Bucket
+# S3 LB Logging Bucket #
 #------------------------------------------------------------------------------
 output "lb_logs_s3_bucket_id" {
   description = "LB Logging S3 Bucket ID"
