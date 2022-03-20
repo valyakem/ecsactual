@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "Inmarsat-Arcablancalogs" {
 
 resource "aws_s3_bucket_acl" "arcablancaacllogs" {
   bucket = aws_s3_bucket.Inmarsat-Arcablancalogs.id
-  acl    = "arcablanca-log-delivery-write"
+  acl    = "log-delivery-write"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "acablancaencryptlogs" {
