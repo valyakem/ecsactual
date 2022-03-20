@@ -8,6 +8,15 @@ module "base-network" {
   private_subnets_cidrs_per_availability_zone = ["192.168.80.0/20", "192.168.96.0/20", "192.168.112.0/20", "192.168.128.0/20"]
 }
 
+
+# module "load_balancer" {
+#   source          = "../../"
+#   name_prefix     = "test-alb"
+#   vpc_id          = module.base-network.vpc_id
+#   private_subnets = module.base-network.private_subnets_ids
+#   public_subnets  = module.base-network.public_subnets_ids
+# }
+
 #------------------------------------------------------------------------------
 # ECS Cluster #
 #------------------------------------------------------------------------------
@@ -101,8 +110,8 @@ module "ecs-fargate-service" {
   task_definition_arn                = module.td.aws_ecs_task_definition_td_arn
 
   # Network configuration block
-  public_subnets   = var.public_subnets_ids
-  private_subnets  = var.private_subnets_ids
+  public_subnets   = module.base-network.public_subnets_ids
+  private_subnets  = module.base-network.private_subnets_ids
   security_groups  = var.ecs_service_security_groups
   assign_public_ip = var.assign_public_ip
 
@@ -115,6 +124,7 @@ module "ecs-fargate-service" {
 
   # Application Load Balancer
   lb_internal                         = var.lb_internal
+  subnets                             = module.base-network.public_subnets_ids
   lb_security_groups                  = var.lb_security_groups
   lb_drop_invalid_header_fields       = var.lb_drop_invalid_header_fields
   lb_idle_timeout                     = var.lb_idle_timeout
