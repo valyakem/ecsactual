@@ -3,7 +3,6 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
-  default     = "imspricingtool1201"
 }
 
 variable "tags" {
@@ -17,7 +16,6 @@ variable "tags" {
 #------------------------------------------------------------------------------
 variable "vpc_id" {
   description = "ID of the VPC"
-  default     = "192.168.0.0/20" 
 }
 
 #------------------------------------------------------------------------------
@@ -70,7 +68,6 @@ variable "private_subnets" {
 variable "public_subnets" {
   description = "A list of public subnet IDs to attach to the LB if it is NOT internal."
   type        = list(string)
-  default = [ "192.168.16.0/20", "192.168.32.0/20", "192.168.48.0/20", "192.168.64.0/20" ]
 }
 
 variable "idle_timeout" {

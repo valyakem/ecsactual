@@ -8,6 +8,15 @@ module "base-network" {
   private_subnets_cidrs_per_availability_zone = ["192.168.80.0/20", "192.168.96.0/20", "192.168.112.0/20", "192.168.128.0/20"]
 }
 
+
+module "load_balancer" {
+  source          = "../../"
+  name_prefix     = "test-alb"
+  vpc_id          = module.base-network.vpc_id
+  private_subnets = module.base-network.private_subnets_ids
+  public_subnets  = module.base-network.public_subnets_ids
+}
+
 #------------------------------------------------------------------------------
 # ECS Cluster #
 #------------------------------------------------------------------------------
