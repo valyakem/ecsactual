@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # S3 BUCKET - For access logs #
 #------------------------------------------------------------------------------
-resource "aws_s3_bucket" "arcablancalogs22" {
+resource "aws_s3_bucket" "imsarcapt-022" {
   bucket = "${var.name_prefix}"
   tags = merge(
     var.tags,
@@ -12,14 +12,14 @@ resource "aws_s3_bucket" "arcablancalogs22" {
 }
 
 resource "aws_s3_bucket_acl" "arcablancaacllogs22" {
-  bucket = aws_s3_bucket.arcablancalogs22.id
+  bucket = aws_s3_bucket.imsarcapt-022.id
   acl    = "log-delivery-write"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "acablancaencryptlogs22" {
   count = var.enable_s3_bucket_server_side_encryption ? 1 : 0
 
-  bucket = aws_s3_bucket.arcablancalogs22.id
+  bucket = aws_s3_bucket.imsarcapt-022.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "lb_logs_access_policy_document" {
     ]
 
     resources = [
-      "${aws_s3_bucket.arcablancalogs22.arn}/*",
+      "${aws_s3_bucket.imsarcapt-022.arn}/*",
       "arn:aws:s3:::${var.name_prefix}-lb-logs/*",
     ]
   }
@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "lb_logs_access_policy_document" {
 # IAM POLICY - For access logs to the s3 bucket
 #------------------------------------------------------------------------------
 resource "aws_s3_bucket_policy" "lb_logs_access_policy" {
-  bucket = aws_s3_bucket.arcablancalogs22.id
+  bucket = aws_s3_bucket.imsarcapt-022.id
   policy = data.aws_iam_policy_document.lb_logs_access_policy_document.json
 }
 
@@ -68,7 +68,7 @@ resource "aws_s3_bucket_policy" "lb_logs_access_policy" {
 resource "aws_s3_bucket_public_access_block" "lb_logs_block_public_access" {
   count = var.block_s3_bucket_public_access ? 1 : 0
 
-  bucket = aws_s3_bucket.arcablancalogs22.id
+  bucket = aws_s3_bucket.imsarcapt-022.id
 
   block_public_acls       = true
   block_public_policy     = true
@@ -97,7 +97,7 @@ resource "aws_lb" "lb" {
   )
 
   access_logs {
-    bucket  = aws_s3_bucket.arcablancalogs22.id
+    bucket  = aws_s3_bucket.imsarcapt-022.id
     enabled = true
   }
 

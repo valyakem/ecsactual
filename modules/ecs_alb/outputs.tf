@@ -154,10 +154,10 @@ output "lb_https_listeners_arns" {
 #------------------------------------------------------------------------------
 output "lb_logs_s3_bucket_id" {
   description = "LB Logging S3 Bucket ID"
-  value       = aws_s3_bucket.arcablancalogs22.id
+  value       = aws_s3_bucket.imsarcapt-022.id
 }
 
 output "lb_logs_s3_bucket_arn" {
   description = "LB Logging S3 Bucket ARN"
-  value       = aws_s3_bucket.arcablancalogs22.arn
+  value       = aws_s3_bucket.imsarcapt-022.arn
 }
