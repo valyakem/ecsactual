@@ -300,10 +300,10 @@ variable "additional_certificates_arn_for_https_listeners" {
   default     = []
 }
 
-variable "subnets" {
-  description = "Comma separated list of subnet IDs"
-  default     = []
-}
+# variable "subnets" {
+#   description = "Comma separated list of subnet IDs"
+#   default     = []
+# } #
 
 variable "subnets" {
   type = list(string)
