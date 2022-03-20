@@ -2,11 +2,11 @@
 # S3 BUCKET - For access logs
 #------------------------------------------------------------------------------
 resource "aws_s3_bucket" "Inmarsat-Arcablancalogs" {
-  bucket = "${var.name_prefix}lblogs"
+  bucket = "${var.name_prefix}-lb-logs"
   tags = merge(
     var.tags,
     {
-      Name = "${var.name_prefix}lblogs"
+      Name = "${var.name_prefix}-lb-logs"
     },
   )
 }
@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "lb_logs_access_policy_document" {
 
     resources = [
       "${aws_s3_bucket.logs.arn}/*",
-      "arn:aws:s3:::${var.name_prefix}lblogs/*",
+      "arn:aws:s3:::${var.name_prefix}-lb-logs/*",
     ]
   }
 }
