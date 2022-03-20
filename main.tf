@@ -2,7 +2,7 @@
 module "base-network" {
   source                                      = "./modules/vpc"
   name_prefix                                 = "test-networking"
-  vpc_cidr_block                              = "192.168.0.0/16"
+  vpc_cidr_block                              = "192.168.0.0/20"
   availability_zones                          = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d"]
   public_subnets_cidrs_per_availability_zone  = ["192.168.16.0/20", "192.168.32.0/20", "192.168.48.0/20", "192.168.64.0/20"]
   private_subnets_cidrs_per_availability_zone = ["192.168.80.0/20", "192.168.96.0/20", "192.168.112.0/20", "192.168.128.0/20"]
