@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "lb_logs_access_policy_document" {
     ]
 
     resources = [
-      "${aws_s3_bucket.logs.arn}/*",
+      "${aws_s3_bucket.Inmarsat-Arcablancalogs.arn}/*",
       "arn:aws:s3:::${var.name_prefix}-lb-logs/*",
     ]
   }
@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "lb_logs_access_policy_document" {
 # IAM POLICY - For access logs to the s3 bucket
 #------------------------------------------------------------------------------
 resource "aws_s3_bucket_policy" "lb_logs_access_policy" {
-  bucket = aws_s3_bucket.logs.id
+  bucket = aws_s3_bucket.Inmarsat-Arcablancalogs.id
   policy = data.aws_iam_policy_document.lb_logs_access_policy_document.json
 }
 
