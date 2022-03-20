@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# S3 BUCKET - For access logs
+# S3 BUCKET - For access logs #
 #------------------------------------------------------------------------------
 resource "aws_s3_bucket" "arcablancalogs" {
   bucket = "${var.name_prefix}-lb-logs"
