@@ -70,6 +70,7 @@ variable "private_subnets" {
 variable "public_subnets" {
   description = "A list of public subnet IDs to attach to the LB if it is NOT internal."
   type        = list(string)
+  default = [ "192.168.16.0/20", "192.168.32.0/20", "192.168.48.0/20", "192.168.64.0/20" ]
 }
 
 variable "idle_timeout" {
@@ -298,20 +299,4 @@ variable "additional_certificates_arn_for_https_listeners" {
   description = "(Optional) List of SSL server certificate ARNs for HTTPS listener. Use it if you need to set additional certificates besides default_certificate_arn"
   type        = list(any)
   default     = []
-}
-
-# variable "subnets" {
-#   description = "Comma separated list of subnet IDs"
-#   default     = []
-# } #
-
-variable "subnets" {
-  type = list(string)
-  default = [
-    "192.168.16.0/20", 
-    "192.168.32.0/20", 
-    "192.168.48.0/20", 
-    "192.168.64.0/20"
-  ]
-
 }
