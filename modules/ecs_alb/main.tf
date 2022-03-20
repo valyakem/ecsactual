@@ -82,7 +82,7 @@ resource "aws_s3_bucket_public_access_block" "lb_logs_block_public_access" {
 # APPLICATION LOAD BALANCER
 #------------------------------------------------------------------------------
 resource "aws_lb" "lb" {
-  name                             = "${var.name_prefix}lb"
+  name                             = "${var.name_prefix}-lb"
   internal                         = var.internal
   load_balancer_type               = "application"
   drop_invalid_header_fields       = var.drop_invalid_header_fields
