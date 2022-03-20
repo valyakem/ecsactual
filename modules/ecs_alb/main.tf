@@ -2,11 +2,11 @@
 # S3 BUCKET - For access logs #
 #------------------------------------------------------------------------------
 resource "aws_s3_bucket" "arcablancalogs22" {
-  bucket = "${var.name_prefix}-lb-logs"
+  bucket = "${var.name_prefix}"
   tags = merge(
     var.tags,
     {
-      Name = "${var.name_prefix}-lb-logs"
+      Name = "${var.name_prefix}"
     },
   )
 }
