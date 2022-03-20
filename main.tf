@@ -85,7 +85,7 @@ module "ecs-fargate-service" {
   # source  = "../terraform-aws-ecs-fargate-service"
 
   name_prefix = var.name_prefix
-  vpc_id      = var.vpc_id
+  vpc_id      = module.base-network.vpc_id
 
   ecs_cluster_arn                    = module.ecs-cluster.aws_ecs_cluster_cluster_arn
   deployment_maximum_percent         = var.deployment_maximum_percent
