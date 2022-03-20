@@ -457,7 +457,7 @@ variable "enable_autoscaling" {
 }
 
 #------------------------------------------------------------------------------
-# AWS ECS SERVICE network_configuration BLOCK
+# AWS ECS SERVICE network_configuration BLOCK #####
 #------------------------------------------------------------------------------
 variable "public_subnets_ids" {
   description = "The public subnets associated with the task or service."
