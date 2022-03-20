@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
-  default     = "Arca-Blanca-PricingTool" 
+  default     = "imspricingtool1201" 
 }
 
 variable "enable_module" {
@@ -462,13 +462,13 @@ variable "enable_autoscaling" {
 variable "public_subnets_ids" {
   description = "The public subnets associated with the task or service."
   type        = list(any)
-  default     = [ "192.168.0.0/19", "192.168.32.0/19", "192.168.64.0/19", "192.168.96.0/19" ]
+  default     = [ "192.168.16.0/20", "192.168.32.0/20", "192.168.48.0/20", "192.168.64.0/20" ]
 }
 
 variable "private_subnets_ids" {
   description = "The private subnets associated with the task or service."
   type        = list(any)
-  default     = [ "192.168.128.0/19", "192.168.160.0/19", "192.168.192.0/19", "192.168.224.0/19" ]
+  default     = [ "192.168.80.0/20", "192.168.96.0/20", "192.168.112.0/20", "192.168.128.0/20" ]
 }
 
 variable "ecs_service_security_groups" {
