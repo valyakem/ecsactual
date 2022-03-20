@@ -3,6 +3,7 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
+  default     = "imspricingtool1201"
 }
 
 variable "tags" {
@@ -16,6 +17,7 @@ variable "tags" {
 #------------------------------------------------------------------------------
 variable "vpc_id" {
   description = "ID of the VPC"
+  default     = "192.168.0.0/20" 
 }
 
 #------------------------------------------------------------------------------
