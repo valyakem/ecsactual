@@ -124,7 +124,7 @@ module "ecs-fargate-service" {
 
   # Application Load Balancer
   lb_internal                         = var.lb_internal
-  subnets                             = module.base-network.public_subnets_ids
+  subnets                             = var.public_subnets_ids
   lb_security_groups                  = var.lb_security_groups
   lb_drop_invalid_header_fields       = var.lb_drop_invalid_header_fields
   lb_idle_timeout                     = var.lb_idle_timeout
