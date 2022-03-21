@@ -132,14 +132,14 @@ resource "aws_ecs_task_definition" "main" {
       containerPort = var.container_port
       hostPort      = var.container_port
     }]
-    logConfiguration = {
-      logDriver = "awslogs"
-      options = {
-        awslogs-group         = aws_cloudwatch_log_group.main.name
-        awslogs-stream-prefix = "ecs"
-        # awslogs-region        = var.region
-      }
-    }
+    # logConfiguration = {
+    #   logDriver = "awslogs"
+    #   options = {
+    #     awslogs-group         = aws_cloudwatch_log_group.main.name
+    #     awslogs-stream-prefix = "ecs"
+    #     # awslogs-region        = var.region
+    #   }
+    # }
     # secrets = var.container_secrets
   }])
 
