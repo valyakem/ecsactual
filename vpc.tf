@@ -131,7 +131,7 @@ resource "aws_eip" "arcablanca-eip" {
 
 # Create a NAT GW and make sure there is an eip before creating the nat
 resource "aws_nat_gateway" "nat_gw" {
-    allocated_ip            = "${aws_eip.arcablanca-eip.id}"
+    allocation_id            = "${aws_eip.arcablanca-eip.id}"
     subnet_id               = "${aws_subnet.pub_subnet1.id}"
 
     tags = {
