@@ -683,7 +683,7 @@ variable "additional_certificates_arn_for_https_listeners" {
 
 variable "repo_name" {
   type    = string
-  default = "testecr"
+  default = "arcablanca-pt"
 }
 
 variable "branch_name" {
