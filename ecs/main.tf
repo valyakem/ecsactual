@@ -100,10 +100,10 @@ resource "aws_iam_role_policy_attachment" "ecs-task-role-policy-attachment" {
   # policy_arn = aws_iam_policy.dynamodb.arn
 }
 
-resource "aws_iam_role_policy_attachment" "ecs-task-role-policy-attachment-for-secrets" {
-  role       = aws_iam_role.ecs_task_execution_role.name
-  # policy_arn = aws_iam_policy.secrets.arn
-}
+# resource "aws_iam_role_policy_attachment" "ecs-task-role-policy-attachment-for-secrets" {
+#   role       = aws_iam_role.ecs_task_execution_role.name
+#   # policy_arn = aws_iam_policy.secrets.arn
+# }
 
 resource "aws_cloudwatch_log_group" "main" {
   name = "/ecs/${var.name}-task-${var.environment}"
