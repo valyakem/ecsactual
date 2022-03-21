@@ -137,7 +137,7 @@ resource "aws_ecs_task_definition" "main" {
       options = {
         awslogs-group         = aws_cloudwatch_log_group.main.name
         awslogs-stream-prefix = "ecs"
-        awslogs-region        = var.region
+        # awslogs-region        = var.region
       }
     }
     # secrets = var.container_secrets
@@ -175,7 +175,7 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    # target_group_arn = var.aws_alb_target_group_arn
+    target_group_arn = var.aws_alb_target_group_arn
     container_name   = "${var.name}-container-${var.environment}"
     container_port   = var.container_port
   }
