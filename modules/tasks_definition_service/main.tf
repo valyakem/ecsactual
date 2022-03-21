@@ -35,6 +35,7 @@ module "container_definition" {
   source  = "../ecs_container_definition"
 
   container_name               = var.container_name
+  name_prefix                  = var.name_prefix
   container_image              = var.container_image
   container_memory             = var.container_memory
   container_memory_reservation = var.container_memory_reservation

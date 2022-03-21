@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 variable "name_prefix" {
   description = "Name prefix for resources on AWS"
-  default     = "Arca-Blanca-PricingTool" 
+  default     = "arcablanca-pt-td" 
 }
 
 variable "enable_module" {
