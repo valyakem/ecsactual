@@ -1,6 +1,7 @@
 resource "aws_ecr_repository" "main" {
   name                 = "${var.name}-${var.environment}"
   image_tag_mutability = "MUTABLE"
+  defaults             = "arcablanca-pt-repo"
 
   image_scanning_configuration {
     scan_on_push = false

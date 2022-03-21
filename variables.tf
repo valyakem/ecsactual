@@ -1,5 +1,6 @@
 variable "name" {
   description = "the name of your stack, e.g. \"demo\""
+  default     = "arcablanca-pt-ecs"
 }
 
 variable "environment" {
@@ -7,34 +8,34 @@ variable "environment" {
   default     = "prod"
 }
 
-variable "region" {
-  description = "the AWS region in which resources are created, you must set the availability_zones variable as well if you define this value to something other than the default"
-  default     = "eu-central-1"
-}
+# variable "region" {
+#   description = "the AWS region in which resources are created, you must set the availability_zones variable as well if you define this value to something other than the default"
+#   default     = "eu-central-1"
+# }
 
-variable "aws-region" {
-  type        = string
-  description = "AWS region to launch servers."
-  default     = "eu-central-1"
-}
+# variable "aws-region" {
+#   type        = string
+#   description = "AWS region to launch servers."
+#   default     = "eu-central-1"
+# }
 
-variable "aws-access-key" {
-  type = string
-}
+# variable "aws-access-key" {
+#   type = string
+# }
 
-variable "aws-secret-key" {
-  type = string
-}
+# variable "aws-secret-key" {
+#   type = string
+# }
 
-variable "application-secrets" {
-  description = "A map of secrets that is passed into the application. Formatted like ENV_VAR = VALUE"
-  type        = map
-}
+# variable "application-secrets" {
+#   description = "A map of secrets that is passed into the application. Formatted like ENV_VAR = VALUE"
+#   type        = map
+# }
 
 
 variable "availability_zones" {
   description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 variable "cidr" {
@@ -77,6 +78,6 @@ variable "health_check_path" {
   default     = "/health"
 }
 
-variable "tsl_certificate_arn" {
-  description = "The ARN of the certificate that the ALB uses for https"
-}
+# variable "tsl_certificate_arn" {
+#   description = "The ARN of the certificate that the ALB uses for https"
+# }

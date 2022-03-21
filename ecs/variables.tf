@@ -6,9 +6,9 @@ variable "environment" {
   description = "the name of your environment, e.g. \"prod\""
 }
 
-variable "region" {
-  description = "the AWS region in which resources are created"
-}
+# variable "region" {
+#   description = "the AWS region in which resources are created"
+# }
 
 variable "subnets" {
   description = "List of subnet IDs"
@@ -47,11 +47,11 @@ variable "container_environment" {
   type        = list
 }
 
-variable "container_secrets" {
-  description = "The container secret environmnent variables"
-  type        = list
-}
+# variable "container_secrets" {
+#   description = "The container secret environmnent variables"
+#   type        = list
+# }
 
-variable "container_secrets_arns" {
-  description = "ARN for secrets"
-}
+# variable "container_secrets_arns" {
+#   description = "ARN for secrets"
+# }
