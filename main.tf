@@ -76,7 +76,6 @@ module "ecs" {
   source                      = "./ecs"
   name                        = var.name
   environment                 = var.environment
-  region                      = var.aws-region
   subnets                     = module.vpc.private_subnets
   aws_alb_target_group_arn    = module.alb.aws_alb_target_group_arn
   ecs_service_security_groups = [module.security_groups.ecs_tasks]
@@ -91,7 +90,7 @@ module "ecs" {
     value = var.container_port }
   ]
   # container_secrets      = module.secrets.secrets_map
-  aws_ecr_repository_url = module.ecr.aws_ecr_repository_url
+  # aws_ecr_repository_url = module.ecr.aws_ecr_repository_url
   # container_secrets_arns = module.secrets.application_secrets_arn
 }
 
