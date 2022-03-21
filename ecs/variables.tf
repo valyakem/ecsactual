@@ -38,10 +38,10 @@ variable "container_image" {
   default     = "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:latest"
 }
 
-variable "aws_alb_target_group_arn" {
-  description = "ARN of the alb target group"
+# variable "aws_alb_target_group_arn" {
+#   description = "ARN of the alb target group"
 
-}
+# }
 
 variable "service_desired_count" {
   description = "Number of services running in parallel"
