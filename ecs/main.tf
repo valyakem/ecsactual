@@ -175,7 +175,7 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    #target_group_arn = var.aws_alb_target_group_arn
+    target_group_arn = "${aws_alb_target_group.main.arn}"
     container_name   = "${var.name}-container-${var.environment}"
     container_port   = var.container_port
   }
