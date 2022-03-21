@@ -76,7 +76,7 @@ module "ecs" {
   source                      = "./ecs"
   name                        = var.name
   environment                 = var.environment
-  region                      = var.aws-region
+  # region                      = var.aws-region
   subnets                     = module.vpc.private_subnets
   aws_alb_target_group_arn    = module.alb.aws_alb_target_group_arn
   ecs_service_security_groups = [module.security_groups.ecs_tasks]
