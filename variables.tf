@@ -27,10 +27,10 @@ variable "environment" {
 #   type = string
 # }
 
-variable "application-secrets" {
-  description = "A map of secrets that is passed into the application. Formatted like ENV_VAR = VALUE"
-  type        = map
-}
+# variable "application-secrets" {
+#   description = "A map of secrets that is passed into the application. Formatted like ENV_VAR = VALUE"
+#   type        = map
+# }
 
 
 variable "availability_zones" {
@@ -78,6 +78,6 @@ variable "health_check_path" {
   default     = "/health"
 }
 
-variable "tsl_certificate_arn" {
-  description = "The ARN of the certificate that the ALB uses for https"
-}
+# variable "tsl_certificate_arn" {
+#   description = "The ARN of the certificate that the ALB uses for https"
+# }
