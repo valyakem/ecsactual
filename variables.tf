@@ -1,7 +1,7 @@
-# variable "name" {
-#   description = "the name of your stack, e.g. \"demo\""
-#   default     = "TestECR"
-# }
+variable "name" {
+  description = "the name of your stack, e.g. \"demo\""
+  default     = "testecr"
+}
 
 variable "environment" {
   description = "the name of your environment, e.g. \"prod\""
@@ -100,4 +100,19 @@ variable "build_project" {
 variable "uri_repo" {
   type = string
   default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
+}
+
+variable "albname" {
+  description = "the name of your stack, e.g. \"demo\""
+  default     = "testecr-alb"
+}
+
+variable "secgroupname" {
+  description = "the name of your stack, e.g. \"demo\""
+  default     = "testecr-sg"
+}
+
+variable "ecsname" {
+  description = "the name of your stack, e.g. \"demo\""
+  default     = "testecr-ecs"
 }

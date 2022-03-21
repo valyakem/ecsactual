@@ -41,7 +41,7 @@ module "vpc" {
 
 module "security_groups" {
   source         = "./security-groups"
-  name           = var.name
+  name           = var.secgroupname
   vpc_id         = module.vpc.id
   environment    = var.environment
   container_port = var.container_port
@@ -49,7 +49,7 @@ module "security_groups" {
 
 module "alb" {
   source              = "./alb"
-  name                = var.name
+  name                = var.albname
   vpc_id              = module.vpc.id
   subnets             = module.vpc.public_subnets
   environment         = var.environment
@@ -74,7 +74,7 @@ module "ecr" {
 
 module "ecs" {
   source                      = "./ecs"
-  name                        = var.name
+  name                        = var.ecsname
   environment                 = var.environment
   subnets                     = module.vpc.private_subnets
   aws_alb_target_group_arn    = module.alb.aws_alb_target_group_arn
