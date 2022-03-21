@@ -81,3 +81,8 @@ variable "health_check_path" {
 # variable "tsl_certificate_arn" {
 #   description = "The ARN of the certificate that the ALB uses for https"
 # }
+
+variable "container_image" {
+  description       = "Container image"
+  default           = "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
+}
