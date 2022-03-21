@@ -137,7 +137,7 @@ resource "aws_ecs_task_definition" "main" {
       options = {
         awslogs-group         = aws_cloudwatch_log_group.main.name
         awslogs-stream-prefix = "ecs"
-        # awslogs-region        = var.region
+        awslogs-region        = var.region
       }
     }
     # secrets = var.container_secrets

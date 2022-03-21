@@ -7,9 +7,10 @@ variable "environment" {
   default     = "dev"
 }
 
-# variable "region" {
-#   description = "the AWS region in which resources are created"
-# }
+variable "region" {
+  description = "the AWS region in which resources are created"
+  default = "us-east-1"
+}
 
 variable "subnets" {
   description = "List of subnet IDs"
