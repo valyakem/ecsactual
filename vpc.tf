@@ -88,34 +88,34 @@ resource "aws_route_table" "arcablanca_PrivateRT" {
 
 #create public subnet association binding them to the public route table
 resource "aws_route_table_association" "public_subnet1_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PubRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
   subnet_id                 = "${aws_subnet.pub_subnet1.id}" 
 }
 
 resource "aws_route_table_association" "public_subnet2_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PubRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
   subnet_id                 = "${aws_subnet.pub_subnet2.id}" 
 }
 
 resource "aws_route_table_association" "public_subnet3_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PubRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
   subnet_id                 = "${aws_subnet.pub_subnet3.id}" 
 }
 
 
 #create Private subnet association binding them to the private route table
 resource "aws_route_table_association" "private_subnet1_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PrivateRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet1.id}" 
 }
 
 resource "aws_route_table_association" "private_subnet2_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PrivateRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet2.id}" 
 }
 
 resource "aws_route_table_association" "private_subnet3_association" {
-  route_table_id            = "${aws.route_table.arcablanca_PrivateRT.id}"
+  route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet3.id}" 
 }
 
