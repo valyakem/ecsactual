@@ -60,7 +60,7 @@ module "alb" {
 
 module "ecr" {
   source      = "./ecr"
-  name        = var.name
+  name        = var.repo_name
   environment = var.environment
 }
 

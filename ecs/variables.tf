@@ -1,5 +1,6 @@
 variable "name" {
   description = "the name of your stack, e.g. \"demo\""
+  default = "testecs"
 }
 
 variable "environment" {
@@ -39,6 +40,7 @@ variable "container_image" {
 
 variable "aws_alb_target_group_arn" {
   description = "ARN of the alb target group"
+
 }
 
 variable "service_desired_count" {
