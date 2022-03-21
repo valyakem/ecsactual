@@ -68,6 +68,9 @@ EOF
 # EOF
 # }
 
+
+
+#delete all
 # resource "aws_iam_policy" "secrets" {
 #   name        = "${var.name}-task-policy-secrets"
 #   description = "Policy that allows access to the secrets we created"
@@ -175,7 +178,7 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    target_group_arn = "${aws_alb_target_group.main.arn}"
+    target_group_arn = "aws_alb_target_group_arn"
     container_name   = "${var.name}-container-${var.environment}"
     container_port   = var.container_port
   }
