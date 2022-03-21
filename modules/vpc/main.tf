@@ -60,7 +60,7 @@ resource "aws_eip" "nat_eip" {
   )
 }
 
-# NAT GatewaysNat
+# NAT Gateways
 resource "aws_nat_gateway" "nat_gw" {
   count         = var.single_nat ? 1 : length(var.availability_zones)
   allocation_id = var.single_nat ? aws_eip.nat_eip.0.id : element(aws_eip.nat_eip.*.id, count.index)

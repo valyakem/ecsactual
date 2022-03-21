@@ -1,3 +1,19 @@
+#------------------------------------------------------------------------------
+# Misc
+#------------------------------------------------------------------------------
+variable "name_prefix" {
+  description = "Name prefix for resources on AWS"
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "Resource tags"
+}
+
+#------------------------------------------------------------------------------
+# AWS ECS Container Definition Variables for Cloudposse module
+#------------------------------------------------------------------------------
 variable "container_name" {
   type        = string
   description = "The name of the container. Up to 255 characters ([a-z], [A-Z], [0-9], -, _ allowed)"
@@ -10,14 +26,14 @@ variable "container_image" {
 
 variable "container_memory" {
   type        = number
-  description = "The amount of memory (in MiB) to allow the container to use. This is a hard limit, if the container attempts to exceed the container_memory, the container is killed. This field is optional for Fargate launch type and the total amount of container_memory of all containers in a task will need to be lower than the task memory value"
-  default     = null
+  description = "(Optional) The amount of memory (in MiB) to allow the container to use. This is a hard limit, if the container attempts to exceed the container_memory, the container is killed. This field is optional for Fargate launch type and the total amount of container_memory of all containers in a task will need to be lower than the task memory value"
+  default     = 4096 # 4 GB
 }
 
 variable "container_memory_reservation" {
   type        = number
-  description = "The amount of memory (in MiB) to reserve for the container. If container needs to exceed this threshold, it can do so up to the set container_memory hard limit"
-  default     = null
+  description = "(Optional) The amount of memory (in MiB) to reserve for the container. If container needs to exceed this threshold, it can do so up to the set container_memory hard limit"
+  default     = 2048 # 2 GB
 }
 
 variable "container_definition" {
@@ -27,19 +43,24 @@ variable "container_definition" {
 }
 
 variable "port_mappings" {
+  description = "The port mappings to configure for the container. This is a list of maps. Each map should contain \"containerPort\", \"hostPort\", and \"protocol\", where \"protocol\" is one of \"tcp\" or \"udp\". If using containers in a task with the awsvpc or host network mode, the hostPort can either be left blank or set to the same value as the containerPort"
   type = list(object({
     containerPort = number
     hostPort      = number
     protocol      = string
   }))
-
-  description = "The port mappings to configure for the container. This is a list of maps. Each map should contain \"containerPort\", \"hostPort\", and \"protocol\", where \"protocol\" is one of \"tcp\" or \"udp\". If using containers in a task with the awsvpc or host network mode, the hostPort can either be left blank or set to the same value as the containerPort"
-
-  default = []
+  default = [
+    {
+      containerPort = 80
+      hostPort      = 80
+      protocol      = "tcp"
+    }
+  ]
 }
 
 # https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_HealthCheck.html
 variable "healthcheck" {
+  description = "(Optional) A map containing command (string), timeout, interval (duration in seconds), retries (1-10, number of times to retry before marking container unhealthy), and startPeriod (0-300, optional grace period to wait, in seconds, before failed healthchecks count toward retries)"
   type = object({
     command     = list(string)
     retries     = number
@@ -47,14 +68,14 @@ variable "healthcheck" {
     interval    = number
     startPeriod = number
   })
-  description = "A map containing command (string), timeout, interval (duration in seconds), retries (1-10, number of times to retry before marking container unhealthy), and startPeriod (0-300, optional grace period to wait, in seconds, before failed healthchecks count toward retries)"
-  default     = null
+  default = null
 }
 
 variable "container_cpu" {
+  # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html#fargate-task-defs
   type        = number
-  description = "The number of cpu units to reserve for the container. This is optional for tasks using Fargate launch type and the total amount of container_cpu of all containers in a task will need to be lower than the task-level cpu value"
-  default     = 0
+  description = "(Optional) The number of cpu units to reserve for the container. This is optional for tasks using Fargate launch type and the total amount of container_cpu of all containers in a task will need to be lower than the task-level cpu value"
+  default     = 1024 # 1 vCPU
 }
 
 variable "essential" {
@@ -105,12 +126,6 @@ variable "map_environment" {
   default     = null
 }
 
-variable "map_secrets" {
-  type        = map(string)
-  description = "The secrets variables to pass to the container. This is a map of string: {key: value}. map_secrets overrides secrets"
-  default     = null
-}
-
 # https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_EnvironmentFile.html
 variable "environment_files" {
   type = list(object({
@@ -118,7 +133,7 @@ variable "environment_files" {
     type  = string
   }))
   description = "One or more files containing the environment variables to pass to the container. This maps to the --env-file option to docker run. The file must be hosted in Amazon S3. This option is only available to tasks using the EC2 launch type. This is a list of maps"
-  default     = null
+  default     = []
 }
 
 variable "secrets" {
@@ -180,26 +195,22 @@ variable "firelens_configuration" {
 }
 
 variable "mount_points" {
-  type = list(object({
-    containerPath = string
-    sourceVolume  = string
-    readOnly      = bool
-  }))
+  type = list(any)
 
-  description = "Container mount points. This is a list of maps, where each map should contain `containerPath`, `sourceVolume` and `readOnly`"
+  description = "Container mount points. This is a list of maps, where each map should contain a `containerPath` and `sourceVolume`. The `readOnly` key is optional."
   default     = []
 }
 
 variable "dns_servers" {
   type        = list(string)
   description = "Container DNS servers. This is a list of strings specifying the IP addresses of the DNS servers"
-  default     = null
+  default     = []
 }
 
 variable "dns_search_domains" {
   type        = list(string)
   description = "Container DNS search domains. A list of DNS search domains that are presented to the container"
-  default     = null
+  default     = []
 }
 
 variable "ulimits" {
@@ -230,7 +241,7 @@ variable "volumes_from" {
 variable "links" {
   type        = list(string)
   description = "List of container names this container can communicate with without port mappings"
-  default     = null
+  default     = []
 }
 
 variable "user" {
@@ -245,7 +256,7 @@ variable "container_depends_on" {
     condition     = string
   }))
   description = "The dependencies defined for container startup and shutdown. A container can contain multiple dependencies. When a dependency is defined for container startup, for container shutdown it is reversed. The condition can be one of START, COMPLETE, SUCCESS or HEALTHY"
-  default     = null
+  default     = []
 }
 
 variable "docker_labels" {
@@ -275,7 +286,7 @@ variable "privileged" {
 variable "system_controls" {
   type        = list(map(string))
   description = "A list of namespaced kernel parameters to set in the container, mapping to the --sysctl option to docker run. This is a list of maps: { namespace = \"\", value = \"\"}"
-  default     = null
+  default     = []
 }
 
 variable "hostname" {
@@ -305,15 +316,70 @@ variable "pseudo_terminal" {
 variable "docker_security_options" {
   type        = list(string)
   description = "A list of strings to provide custom labels for SELinux and AppArmor multi-level security systems."
+  default     = []
+}
+
+#------------------------------------------------------------------------------
+# AWS ECS Task Definition Variables
+#------------------------------------------------------------------------------
+variable "iam_partition" {
+  description = "IAM partition to use when referencing standard policies. GovCloud and some other regions use different partitions"
+  type        = string
+  default     = "aws"
+}
+
+variable "permissions_boundary" {
+  description = "(Optional) The ARN of the policy that is used to set the permissions boundary for the `ecs_task_execution_role` role."
+  type        = string
   default     = null
 }
 
-# https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ResourceRequirement.html
-variable "resource_requirements" {
-  type = list(object({
-    type  = string
-    value = string
-  }))
-  description = "The type and amount of a resource to assign to a container. The only supported resource is a GPU."
+variable "task_role_arn" {
+  description = "(Optional) The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services. If not specified, `aws_iam_role.ecs_task_execution_role.arn` is used"
+  type        = string
   default     = null
+}
+
+variable "ecs_task_execution_role_custom_policies" {
+  description = "(Optional) Custom policies to attach to the ECS task execution role. For example for reading secrets from AWS Systems Manager Parameter Store or Secrets Manager"
+  type        = list(string)
+  default     = []
+}
+
+variable "placement_constraints" {
+  description = "(Optional) A set of placement constraints rules that are taken into consideration during task placement. Maximum number of placement_constraints is 10. This is a list of maps, where each map should contain \"type\" and \"expression\""
+  type        = list(any)
+  default     = []
+}
+
+variable "proxy_configuration" {
+  description = "(Optional) The proxy configuration details for the App Mesh proxy. This is a list of maps, where each map should contain \"container_name\", \"properties\" and \"type\""
+  type        = list(any)
+  default     = []
+}
+
+variable "volumes" {
+  description = "(Optional) A set of volume blocks that containers in your task may use"
+  type = list(object({
+    host_path = string
+    name      = string
+    docker_volume_configuration = list(object({
+      autoprovision = bool
+      driver        = string
+      driver_opts   = map(string)
+      labels        = map(string)
+      scope         = string
+    }))
+    efs_volume_configuration = list(object({
+      file_system_id          = string
+      root_directory          = string
+      transit_encryption      = string
+      transit_encryption_port = string
+      authorization_config = list(object({
+        access_point_id = string
+        iam             = string
+      }))
+    }))
+  }))
+  default = []
 }
