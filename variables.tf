@@ -126,3 +126,8 @@ variable "arca-blanca-fargate-cluster" {
   default                 = "Arca-blanca-fargate-cluster"
 }
 
+variable "region" {
+  description = "Container's region"
+  default = "us-east-1"
+}
+
