@@ -4,7 +4,7 @@ data "template_file" "abpt_ecs_task_definition_template" {
 
     // these are application variables to be used with our app.
      vars = {
-        task_definition_name = "${var.task_definition_name}"
+        task_definition_name = "${var.abpt_ecs_service_name}"
         ecs_service_name     = "${var.abpt_ecs_service_name}"
         docker_image_url     = "${var.docker_image_url}"
         memory               = "${var.abpt_docker_memory}"
