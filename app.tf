@@ -4,7 +4,7 @@ data "template_file" "abpt_ecs_task_definition_template" {
 
     // these are application variables to be used with our app.
      vars = {
-        task_definition_name = "${var.abpt_ecs_service_name}"
+        task_definition_name = "${var.task_definition_name}"
         ecs_service_name     = "${var.abpt_ecs_service_name}"
         docker_image_url     = "${var.docker_image_url}"
         memory               = "${var.abpt_docker_memory}"
@@ -18,6 +18,7 @@ data "template_file" "abpt_ecs_task_definition_template" {
 
 #create a task definition resources for arca blanca and render our json template
 resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
+  name                      = "${var.task_definition_name}"
   container_definitions     = data.template_file.abpt_ecs_task_definition_template.rendered
   family                    = "${var.abpt_ecs_service_name}"
   cpu                       = 512
@@ -34,7 +35,7 @@ resource "aws_iam_role" "abpt_fargate_iam_role" {
   assume_role_policy        = <<EOF
 {
     "Version": "2012-10-17",
-    "Statements": [
+    "Statement": [
       {
         "Effect": "Allow",
         "Principal": {
@@ -124,7 +125,7 @@ resource "aws_alb_target_group" "abpt_ecs_app_target_group" {
 # ECS services for our fargate implementation n
 resource "aws_ecs_service" "abpt_ecs_service" {
     name                                    = "${var.abpt_ecs_service_name}" 
-    task_definition                         = "${var.abpt_ecs_service_name}"
+    task_definition                         = "${var.task_definition_name}"
     desired_count                           = "${var.desired_count_number}" 
     cluster                                 = "${var.arca-blanca-clustername}"
     launch_type                             = "FARGATE" 

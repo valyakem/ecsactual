@@ -1,6 +1,6 @@
 [
     {
-      "name": "supreme-task",
+      "name": "${var.task_definition_name}",
       "image": "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:49d30de",
       "essential": true,
       "portMappings": [
@@ -13,7 +13,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "supreme-task-group",
-          "awslogs-region": "eu-central-1",
+          "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "streaming"
         }
       }
