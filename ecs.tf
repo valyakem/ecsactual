@@ -26,7 +26,7 @@ resource "aws_alb_listener" "abpt_ecs_https_listener" {
     target_group_arn   = "${aws_alb_target_group.abpt_ecs_default_tg.arn}"
   }
 
-  depends_on = ["aws_alb_target_group.abpt_ecs_default_tg"]
+  depends_on = [aws_alb_target_group.abpt_ecs_default_tg]
 }
 
 #Arca Blanca ALB ECS default target group. Note, this may not be used in our application deployment
