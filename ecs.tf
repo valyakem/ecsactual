@@ -74,13 +74,14 @@ resource "aws_iam_role" "abpt_ecs_cluster_role" {
 resource "aws_iam_role_policy" "abpt_ecs_cluster_policy" {
   name                          = "${var.arca-blanca-fargate-cluster}-IAM-Policy"
   role                          = "${aws_iam_role.abpt_ecs_cluster_role.id}"
-  policy                        = <<EOF
+
+
+policy = <<EOT
 {
-    "Version":  "2012-10-17",
-    "Statement": [
+  "Version": "2012-10-17",
+  "Statement": [
     {
-        "Effect": "Allow",
-        "Actions": [
+      "Action": [
             "ecs:*",
             "ec2:*",
             "elasticloadbalancing:*",
@@ -93,10 +94,12 @@ resource "aws_iam_role_policy" "abpt_ecs_cluster_policy" {
             "sns:*",
             "logs:*",
             "ssm:*"
-        ],
-        "Resource": "*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
-    ]
+  ]
+
 }
-  EOF
+EOT
 }
