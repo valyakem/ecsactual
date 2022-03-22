@@ -7,7 +7,7 @@ resource "aws_acm_certificate" "arca-blanca-domaincert" {
     }
 }
 
-data "aws_route53_zone" "arca-blanca-ecsdomain" {
+resource "aws_route53_zone" "arca-blanca-ecsdomain" {
     name                            = "${var.ecs_arcablanca_domain}" 
     private_zone                    = false 
 }
