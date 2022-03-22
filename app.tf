@@ -31,45 +31,46 @@ resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
 //create an iam role for arca blanca to be used with our ecs service
 resource "aws_iam_role" "abpt_fargate_iam_role" {
   name                      = "${var.abpt_ecs_service_name}-IAM-Role"
-  assume_role_policy        = <<EOF
+
+assume_role_policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Principal": {
-            "Service": ["ecs.amazonaws.com", "ecs-tasks.amazonaws.com"]
-        },
-        "Action": "sts:AssumeRole"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": ["ecs.amazonaws.com", "ecs-tasks.amazonaws.com"]
+      },
+      "Effect": "Allow",
+      "Sid": ""
     }
-    ]
+  ]
 }
-  EOF 
-}
+EOF
 
 //create teh abpt fargate policy to be assigned to the role
 resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
   name                          = "${var.abpt_ecs_service_name}-IAM-Role-Policy" 
   role                          = "${aws_iam_role.abpt_fargate_iam_role.id}"
 
-  policy                        = <<EOF
+  policy = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ecs:*",
-                "ecr:*",
-                "logs:*",
-                "cloudwatch:*",
-                "elasticloadbalancing:*"
-            ],
-            "Resources": "*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ecs:*",
+        "ecr:*",
+        "logs:*",
+        "cloudwatch:*",
+        "elasticloadbalancing:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
 }
-  EOF
+EOF
 }
 
 resource "aws_security_group" "abpt_app_security_group" {
