@@ -1,0 +1,22 @@
+[
+    {
+        "name": "${var.task_definition_name}",
+        "image": "${var.docker_image_url}",
+        "essential": true,
+        "environment": [{  
+            "name": "Arca Blanca App",
+            "value": "${var.arcablanca_pt_profile}"
+        }],
+        "portMappings": [{
+            "containerPort": "${var.abpt_docker_container_port"
+        }],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${var.abpt_ecs_service_name}-LogGroup",
+                "awslogs-region": "${region}",
+                "awslogs-stream-prefix": "${abpt_ecs_service_name}-LogGroup-stream"
+            }
+        }
+    }
+]

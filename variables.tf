@@ -1,3 +1,7 @@
+
+#=====================================================================================
+#     VPC (vpc.tf) VARIABLES. Note: Arca Blanca pricing Tool
+#======================================================================================
 variable "vpc_cidr" {
     default                 = "10.0.0.0/16"
     description             = "Pricing Tool cidr block"
@@ -32,11 +36,86 @@ variable "arcablanca_private_subnet_1_cidr" {
 
 variable "arcablanca_private_subnet_2_cidr" {
   description               = "Arca-Blanca private subnet 2 cidr"
-  default                   = "10.0.2.0/24" 
+  default                   = "10.0.5.0/24" 
 }
 
 variable "arcablanca_private_subnet_3_cidr" {
   description               = "Arca-Blanca private subnet 3 cidr"
   default                   = "10.0.2.0/24" 
+}
+
+variable "public_subnetslist" {
+  description                 = "List of private subnet for output purposes only"
+  type                        = list(string)
+  default                     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+}
+#=====================================================================================
+#     ECS (ecs.tf) VARIABLES. Note:Arca Blanca pricing Tool
+#======================================================================================
+variable "arca-blanca-clustername" {
+  description                 = "Arca blanca ECS Cluster name"
+  default                     = "arca-blancapt-cluster"
+}
+
+variable "arcblanca_internet_cidr" {
+  description                 = "Internet Cidr block for load balancer ingress"
+}   
+
+variable "ecs_arcablanca_domain" {
+  description                 = "ECS Arca blanca domain name"
+  default                     = "nexgbit.academy" 
+}
+
+variable "internet_cidr_blocks" {
+  description                 = "Classless interdomain routing (cidr) block for internet"
+  default                     = "0.0.0.0/0"
+}
+
+variable "private_subnetslist" {
+  description                 = "List of private subnet for output purposes only"
+  type                        = list(string)
+  default                     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+}
+
+
+#=====================================================================================
+#     Application (app.tf) VARIABLES. Note: abpt=> Arca Blanca pricing Tool
+#======================================================================================
+variable "abpt_ecs_service_name" {
+  description           = "ECS service name"
+  default               = "arcablancaapp" 
+}
+variable "docker_image_url" {
+  description           = "Docker Image URI locator"
+}
+
+variable "arcablanca_pt_profile" {
+  description           = "ARCA BLANCA PROFILE NAME"
+  default               = "default" 
+}
+
+variable "task_definition_name" {
+  description           = "task definition name"
+  default               = "abpt-task-def" 
+}
+variable "abpt_docker_memory" {
+  description           = "Memory in GB assigned to the docker container"
+  default               = 1024 
+}
+variable "abpt_docker_container_port" {
+  description           = "port assigned to the container"
+  default               = 8080 
+} 
+
+#ECS Service Variables
+#----------------------------------
+variable "desired_count_number" {
+  description            = "Arca BLANCA ECS service count. Should be number"
+  default                = 1
+}
+
+variable "desired_task_number" {
+  description            = "Min. Number of tasks to be always active. Should be number"
+  default                = 2
 }
 
