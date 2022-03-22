@@ -2,7 +2,7 @@ data "template_file" "abpt_ecs_task_definition_template" {
     template = "${file("task_definition.json")}"
 
     // these are application variables to be used with our app.
-    
+     vars = {
         task_definition_name = "${var.abpt_ecs_service_name}"
         ecs_service_name     = "${var.abpt_ecs_service_name}"
         docker_image_url     = "${var.docker_image_url}"
@@ -10,6 +10,8 @@ data "template_file" "abpt_ecs_task_definition_template" {
         docker_container_port= "${var.abpt_docker_container_port}"
         arcablanca_pt_profile= "${var.arcablanca_pt_profile}"
         region               = "${var.region}"
+  }
+
    
 }
 
