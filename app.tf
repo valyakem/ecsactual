@@ -1,5 +1,5 @@
 data "template_file" "abpt_ecs_task_definition_template" {
-    template = "${file("task_definition.json")}"
+    template = file("${task_definition.json}")
 
     // these are application variables to be used with our app.
      vars = {
