@@ -38,8 +38,8 @@ resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
           logDriver     = "awslogs"
           options       = [{
             awslogs-group         = "${var.abpt_ecs_service_name}-LogGroup"
-            awslogs-region        = "${region}"
-            awslogs-stream-prefix = "${abpt_ecs_service_name}-LogGroup-stream"
+            awslogs-region        = "${var.region}"
+            awslogs-stream-prefix = "${var.abpt_ecs_service_name}-LogGroup-stream"
           }]
       }]
     }
