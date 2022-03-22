@@ -59,6 +59,7 @@ variable "arca-blanca-clustername" {
 
 variable "arcblanca_internet_cidr" {
   description                 = "Internet Cidr block for load balancer ingress"
+  default                     = "0.0.0.0/0" 
 }   
 
 variable "ecs_arcablanca_domain" {
@@ -87,6 +88,7 @@ variable "abpt_ecs_service_name" {
 }
 variable "docker_image_url" {
   description           = "Docker Image URI locator"
+  default               = "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr" 
 }
 
 variable "arcablanca_pt_profile" {
