@@ -41,7 +41,7 @@ variable "arcablanca_private_subnet_2_cidr" {
 
 variable "arcablanca_private_subnet_3_cidr" {
   description               = "Arca-Blanca private subnet 3 cidr"
-  default                   = "10.0.2.0/24" 
+  default                   = "10.0.6.0/24" 
 }
 
 variable "public_subnetslist" {
