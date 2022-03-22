@@ -120,7 +120,7 @@ resource "aws_alb_target_group" "abpt_ecs_app_target_group" {
   }
 }
 
-# ECS services for our fargate implementation
+# ECS services for our fargate implementation new
 resource "aws_ecs_service" "abpt_ecs_service" {
     name                                    = "${var.abpt_ecs_service_name}" 
     task_definition                         = "${var.abpt_ecs_service_name}"
