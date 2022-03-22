@@ -47,7 +47,7 @@ assume_role_policy = <<EOF
   ]
 }
 EOF
-
+}
 //create teh abpt fargate policy to be assigned to the role
 resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
   name                          = "${var.abpt_ecs_service_name}-IAM-Role-Policy" 
