@@ -24,11 +24,11 @@ resource "aws_route53_record" "abpt_ecs_cert_validation_record" {
   }
 
   allow_overwrite = true
-  name            = each.value.name
-  records         = [each.value.record]
+  name            = dvo.value.name
+  records         = [dvo.value.record]
   ttl             = 60
-  type            = each.value.type
-  zone_id         = each.value.zone_id
+  type            = dvo.value.type
+  zone_id         = dvo.value.zone_id
 }
 # resource "aws_route53_record" "abpt_ecs_cert_validation_record" {
 #     name                            = "${tolist(aws_acm_certificate.arca-blanca-domaincert.domain_validation_options)[0].resource_record_name}" 
