@@ -31,45 +31,21 @@ resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
 //create an iam role for arca blanca to be used with our ecs service
 resource "aws_iam_role" "abpt_fargate_iam_role" {
   name                      = "${var.abpt_ecs_service_name}-IAM-Role"
-
-  assume_role_policy = jsonencode({
-      Version = "2012-10-17"
-      Statement = [
-        {
-          Action = "sts:AssumeRole"
-          Effect = "Allow"
-          # Sid    = ""
-          Principal = {
-            Service = ["ec2.amazonaws.com","ecs-tasks.amazon.com"]
-          }
+  assume_role_policy        = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+            "Service": ["ecs.amazonaws.com", "ecs-tasks.amazonaws.com"]
         },
-      ]
-    })
-
-  tags = {
-    tag-key = "${var.abpt_ecs_service_name}-IAM-Role"
-  }
+        "Action": "sts:AssumeRole"
+    }
+    ]
 }
-
-
-#   assume_role_policy        = <<EOF
-# {
-#     "Version": "2012-10-17",
-#     "Statement": [
-#       {
-#         "Effect": "Allow",
-#         "Principal": {
-#             "Service": [
-#                 "ecs.amazon.com",
-#                 "ecs-tasks.amazon.com"
-#                 ]
-#         },
-#         "Action": "sts:AssumeRole"
-#     }
-#     ]
-# }
-#   EOF 
-# }
+  EOF 
+}
 
 //create teh abpt fargate policy to be assigned to the role
 resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
