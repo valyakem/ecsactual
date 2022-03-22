@@ -72,7 +72,7 @@ resource "aws_iam_role" "abpt_ecs_cluster_role" {
 }
 
 resource "aws_iam_role_policy" "abpt_ecs_cluster_policy" {
-  Name                          = "${var.arca-blanca-fargate-cluster}-IAM-Policy"
+  name                          = "${var.arca-blanca-fargate-cluster}-IAM-Policy"
   role                          = "${aws_iam_role.abpt_ecs_cluster_role.id}"
   policy                        = <<EOF
 {
