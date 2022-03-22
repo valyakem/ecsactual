@@ -37,7 +37,7 @@ resource "aws_alb_target_group" "abpt_ecs_default_tg" {
   vpc_id                    = "${aws_vpc.arca-blanca-ptvpc.id}"
 
   tags = {
-    "Name"                  = "${var.arca-blanca-fargate-cluster}-TG"
+    "name"                  = "${var.arca-blanca-fargate-cluster}-TG"
   }
 }
 
