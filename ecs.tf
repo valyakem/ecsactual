@@ -57,7 +57,7 @@ resource "aws_iam_role" "abpt_ecs_cluster_role" {
   name                      = "${var.arca-blanca-fargate-cluster}-IAM-Role"
   assume_role_policy  = <<EOF
 {
-    "Version":  "2012-10-17"
+    "Version":  "2012-10-17",
     "Statement": [
     {
         "Effect": "Allow",
@@ -76,7 +76,7 @@ resource "aws_iam_role_policy" "abpt_ecs_cluster_policy" {
   role                          = "${aws_iam_role.abpt_ecs_cluster_role.id}"
   policy                        = <<EOF
 {
-    "Version":  "2012-10-17"
+    "Version":  "2012-10-17",
     "Statement": [
     {
         "Effect": "Allow",
