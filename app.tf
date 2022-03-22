@@ -1,27 +1,24 @@
-data "template_file" "abpt_ecs_task_definition_template" {
+# data "template_file" "abpt_ecs_task_definition_template" {
 
-provider "terraform" {
-  version = "<= 1.9.9"
-}
-    template = "${file("task_definition.json")}"
+#     template = "${file("task_definition.json")}"
 
-    // these are application variables to be used with our app.
-     vars = {
-        task_definition_name = "${var.abpt_ecs_service_name}"
-        ecs_service_name     = "${var.abpt_ecs_service_name}"
-        docker_image_url     = "${var.docker_image_url}"
-        memory               = "${var.abpt_docker_memory}"
-        docker_container_port= "${var.abpt_docker_container_port}"
-        arcablanca_pt_profile= "${var.arcablanca_pt_profile}"
-        region               = "${var.region}"
-  }
+#     // these are application variables to be used with our app.
+#      vars = {
+#         task_definition_name = "${var.abpt_ecs_service_name}"
+#         ecs_service_name     = "${var.abpt_ecs_service_name}"
+#         docker_image_url     = "${var.docker_image_url}"
+#         memory               = "${var.abpt_docker_memory}"
+#         docker_container_port= "${var.abpt_docker_container_port}"
+#         arcablanca_pt_profile= "${var.arcablanca_pt_profile}"
+#         region               = "${var.region}"
+#   }
 
    
-}
+# }
 
 #create a task definition resources for arca blanca and render our json template
 resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
-  container_definitions     = "${data.template_file.abpt_ecs_task_definition_template.rendered}"
+  container_definitions     = file("task-definitions.json")
   family                    = "${var.abpt_ecs_service_name}"
   cpu                       = 512
   memory                    = "${var.abpt_docker_memory}"
