@@ -34,14 +34,14 @@ resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
           containerPort = "${var.abpt_docker_container_port}"
           hostPort      = "${var.abpt_docker_host_port}"
         }]
-      logConfiguration  = [{
+      logConfiguration  = {
           logDriver     = "awslogs"
-          options       = [{
+          options       = {
             awslogs-group         = "${var.abpt_ecs_service_name}-LogGroup"
             awslogs-region        = "${var.region}"
             awslogs-stream-prefix = "${var.abpt_ecs_service_name}-LogGroup-stream"
-          }]
-      }]
+          }
+      }
     }
   ])
 
