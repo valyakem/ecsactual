@@ -1,118 +1,128 @@
-variable "name" {
-  description = "the name of your stack, e.g. \"demo\""
-  default     = "testecr"
+
+#=====================================================================================
+#     VPC (vpc.tf) VARIABLES. Note: Arca Blanca pricing Tool
+#======================================================================================
+variable "vpc_cidr" {
+    default                 = "10.0.0.0/16"
+    description             = "Pricing Tool cidr block"
 }
 
-variable "environment" {
-  description = "the name of your environment, e.g. \"prod\""
-  default     = "prod"
+variable "enable_dns_hostnames" {
+  description               = "Enable dnshostname or not? Boolean field"
+  default                   = true 
+}           
+
+variable "arcablanca_pub_subnet_1_cidr" {
+  description               = "Arca-Blanca public subnet 1 cidr"
+  default                   = "10.0.1.0/24" 
 }
 
-# variable "region" {
-#   description = "the AWS region in which resources are created, you must set the availability_zones variable as well if you define this value to something other than the default"
-#   default     = "eu-central-1"
-# }
-
-# variable "aws-region" {
-#   type        = string
-#   description = "AWS region to launch servers."
-#   default     = "eu-central-1"
-# }
-
-# variable "aws-access-key" {
-#   type = string
-# }
-
-# variable "aws-secret-key" {
-#   type = string
-# }
-
-# variable "application-secrets" {
-#   description = "A map of secrets that is passed into the application. Formatted like ENV_VAR = VALUE"
-#   type        = map
-# }
-
-
-variable "availability_zones" {
-  description = "a comma-separated list of availability zones, defaults to all AZ of the region, if set to something other than the defaults, both private_subnets and public_subnets have to be defined as well"
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+variable "arcablanca_pub_subnet_2_cidr" {
+  description               = "Arca-Blanca public subnet 2 cidr"
+  default                   = "10.0.2.0/24" 
 }
 
-variable "cidr" {
-  description = "The CIDR block for the VPC."
-  default     = "10.0.0.0/16"
+variable "arcablanca_pub_subnet_3_cidr" {
+  description               = "Arca-Blanca public subnet 3 cidr"
+  default                   = "10.0.3.0/24"
 }
 
-variable "private_subnets" {
-  description = "a list of CIDRs for private subnets in your VPC, must be set if the cidr variable is defined, needs to have as many elements as there are availability zones"
-  default     = ["10.0.0.0/20", "10.0.32.0/20", "10.0.64.0/20"]
+
+variable "arcablanca_private_subnet_1_cidr" {
+  description               = "Arca-Blanca private subnet 1 cidr"
+  default                   = "10.0.4.0/24" 
 }
 
-variable "public_subnets" {
-  description = "a list of CIDRs for public subnets in your VPC, must be set if the cidr variable is defined, needs to have as many elements as there are availability zones"
-  default     = ["10.0.16.0/20", "10.0.48.0/20", "10.0.80.0/20"]
+
+variable "arcablanca_private_subnet_2_cidr" {
+  description               = "Arca-Blanca private subnet 2 cidr"
+  default                   = "10.0.5.0/24" 
 }
 
-variable "service_desired_count" {
-  description = "Number of tasks running in parallel"
-  default     = 2
+variable "arcablanca_private_subnet_3_cidr" {
+  description               = "Arca-Blanca private subnet 3 cidr"
+  default                   = "10.0.2.0/24" 
 }
 
-variable "container_port" {
-  description = "The port where the Docker is exposed"
-  default     = 8000
+variable "public_subnetslist" {
+  description                 = "List of private subnet for output purposes only"
+  type                        = list(string)
+  default                     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+}
+#=====================================================================================
+#     ECS (ecs.tf) VARIABLES. Note:Arca Blanca pricing Tool
+#======================================================================================
+variable "arca-blanca-clustername" {
+  description                 = "Arca blanca ECS Cluster name"
+  default                     = "arca-blancapt-cluster"
 }
 
-variable "container_cpu" {
-  description = "The number of cpu units used by the task"
-  default     = 256
+variable "arcblanca_internet_cidr" {
+  description                 = "Internet Cidr block for load balancer ingress"
+  default                     = "0.0.0.0/0" 
+}   
+
+variable "ecs_arcablanca_domain" {
+  description                 = "ECS Arca blanca domain name"
+  default                     = "nexgbit.academy" 
 }
 
-variable "container_memory" {
-  description = "The amount (in MiB) of memory used by the task"
-  default     = 512
+variable "internet_cidr_blocks" {
+  description                 = "Classless interdomain routing (cidr) block for internet"
+  default                     = "0.0.0.0/0"
 }
 
-variable "health_check_path" {
-  description = "Http path for task health check"
-  default     = "/health"
+variable "private_subnetslist" {
+  description                 = "List of private subnet for output purposes only"
+  type                        = list(string)
+  default                     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
-# variable "tsl_certificate_arn" {
-#   description = "The ARN of the certificate that the ALB uses for https"
-# }
 
-variable "repo_name" {
-  type    = string
-  default = "testecr"
+#=====================================================================================
+#     Application (app.tf) VARIABLES. Note: abpt=> Arca Blanca pricing Tool
+#======================================================================================
+variable "abpt_ecs_service_name" {
+  description           = "ECS service name"
+  default               = "arcablancaapp" 
+}
+variable "docker_image_url" {
+  description           = "Docker Image URI locator"
+  default               = "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr" 
 }
 
-variable "branch_name" {
-  type    = string
-  default = "main"
+variable "arcablanca_pt_profile" {
+  description           = "ARCA BLANCA PROFILE NAME"
+  default               = "default" 
 }
 
-variable "build_project" {
-  type    = string
-  default = "dev-build-repo"
+variable "task_definition_name" {
+  description           = "task definition name"
+  default               = "abpt-task-def" 
+}
+variable "abpt_docker_memory" {
+  description           = "Memory in GB assigned to the docker container"
+  default               = 1024 
+}
+variable "abpt_docker_container_port" {
+  description           = "port assigned to the container"
+  default               = 8080 
+} 
+
+#ECS Service Variables
+#----------------------------------
+variable "desired_count_number" {
+  description            = "Arca BLANCA ECS service count. Should be number"
+  default                = 1
 }
 
-variable "uri_repo" {
-  type = string
-  default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
+variable "desired_task_number" {
+  description            = "Min. Number of tasks to be always active. Should be number"
+  default                = 2
 }
 
-variable "albname" {
-  description = "the name of your stack, e.g. \"demo\""
-  default     = "testecr-alb"
+variable "arca-blanca-fargate-cluster" {
+  description             = "Arca-Blanca Fargate Cluster description"
+  default                 = "Arca-blanca-fargate-cluster"
 }
 
-variable "secgroupname" {
-  description = "the name of your stack, e.g. \"demo\""
-  default     = "testecr-sg"
-}
-
-variable "ecsname" {
-  description = "the name of your stack, e.g. \"demo\""
-  default     = "testecr-ecs"
-}
