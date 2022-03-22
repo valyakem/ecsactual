@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
   requires_compatibilities  = ["FARGATE"]
   network_mode              = "awsvpc"
   execution_role_arn        = "${aws_iam_role.abpt_fargate_iam_role.arn}"
-  tasktask_role_arn         = "${aws_iam_role.abpt_fargate_iam_role.arn}"
+  task_role_arn         = "${aws_iam_role.abpt_fargate_iam_role.arn}"
 }
 
 //create an iam role for arca blanca to be used with our ecs service
