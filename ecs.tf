@@ -62,7 +62,7 @@ resource "aws_iam_role" "abpt_ecs_cluster_role" {
     {
         "Effect": "Allow",
         "Principal": {
-            "service": ["ecs.amazon.com", "ec2.amazon.com", "application-autoscaling.amazon.com"]
+            "Service": ["ecs.amazon.com", "ec2.amazon.com", "application-autoscaling.amazon.com"]
         },
         "Action": "sts:AssumeRole"
     }
