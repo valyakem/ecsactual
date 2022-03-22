@@ -18,9 +18,9 @@ data "template_file" "abpt_ecs_task_definition_template" {
 #create a task definition resources for arca blanca and render our json template
 resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
   container_definitions     = "${data.template_file.abpt_ecs_task_definition_template.rendered}"
-  family                    = "${var.ecs_service_name}"
+  family                    = "${var.abpt_ecs_service_name}"
   cpu                       = 512
-  memory                    = "${var.memory}"
+  memory                    = "${var.abpt_docker_memory}"
   requires_compatibilities  = ["FARGATE"]
   network_mode              = "awsvpc"
   execution_role_arn        = "${aws_iam_role.abpt_fargate_iam_role.arn}"
