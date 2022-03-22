@@ -1,6 +1,6 @@
 data "template_file" "abpt_ecs_task_definition_template" {
-  
-  provider "template" {
+
+provider "terraform" {
   version = "<= 1.9.9"
 }
     template = "${file("task_definition.json")}"
