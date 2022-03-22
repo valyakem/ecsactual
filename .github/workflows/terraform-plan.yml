@@ -39,7 +39,7 @@ jobs:
       # - name: Terraform Format
       #   run: terraform fmt -check
 
-      # Generates an execution plan for Terraform ABE
+      # Generates an execution plan for Terraform pin
       - name: Terraform Plan
         run: terraform plan
 
