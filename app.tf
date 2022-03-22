@@ -52,7 +52,8 @@ resource "aws_iam_role" "abpt_fargate_iam_role" {
 //create teh abpt fargate policy to be assigned to the role
 resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
   name                          = "${var.abpt_ecs_service_name}-IAM-Role-Policy" 
-  role                          = "${aws_iam_role.abpt_fargate_iam_role}"
+  role                          = "${aws_iam_role.abpt_fargate_iam_role.id}"
+
   policy                        = <<EOF
 {
     "Version": "2012-10-17",
@@ -129,7 +130,7 @@ resource "aws_ecs_service" "abpt_ecs_service" {
 
     network_configuration {
       subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-      security_groups   = "${aws_security_group.abpt_app_security_group.id}"
+      security_group   = "${aws_security_group.abpt_app_security_group.id}"
       assign_public_ip  = true 
     }
 

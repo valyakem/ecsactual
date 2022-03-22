@@ -64,7 +64,7 @@ variable "arcblanca_internet_cidr" {
 
 variable "ecs_arcablanca_domain" {
   description                 = "ECS Arca blanca domain name"
-  default                     = "nexgbit.academy" 
+  default                     = "nexgbits.academy" 
 }
 
 variable "internet_cidr_blocks" {
