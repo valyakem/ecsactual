@@ -74,7 +74,7 @@ variable "Arcablanca-PubRT-Assoc" {
 #======================================================================================
 variable "arca-blanca-clustername" {
   description                 = "Arca blanca ECS Cluster name"
-  default                     = "arca-blancapt-cluster"
+  default                     = "Arca-blanca-fargate-cluster"
 }
 
 variable "arcblanca_internet_cidr" {

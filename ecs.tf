@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "arca-blanca-fargate-cluster" {
-  name = "Arca-blanca-fargate-cluster"
+  name = "${var.arca-blanca-clustername}"
 }
 
 resource "aws_alb" "arca-blanca-ecs-cluster_alb" {

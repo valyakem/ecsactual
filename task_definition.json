@@ -1,6 +1,6 @@
 [
     {
-      "name": "${task_definition_name}",
+      "name": "abpt-task-def",
       "image": "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:49d30de",
       "essential": true,
       "portMappings": [
@@ -12,7 +12,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "supreme-task-group",
+          "awslogs-group": "Arcablanca-tasklog-group",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "streaming"
         }
