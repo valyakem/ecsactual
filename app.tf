@@ -49,7 +49,7 @@ resource "aws_iam_role" "abpt_fargate_iam_role" {
   tags = {
     tag-key = "${var.abpt_ecs_service_name}-IAM-Role"
   }
-
+}
 
 
 #   assume_role_policy        = <<EOF
