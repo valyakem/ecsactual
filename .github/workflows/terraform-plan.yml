@@ -3,7 +3,7 @@ name: 'Terraform-Infra-Plan'
 on:
   push:
     branches:
-    - main
+    - develop
   pull_request:
 
 jobs:
