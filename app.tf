@@ -41,8 +41,7 @@ assume_role_policy = <<EOF
       "Principal": {
         "Service": ["ecs.amazonaws.com", "ecs-tasks.amazonaws.com"]
       },
-      "Effect": "Allow",
-      "Sid": ""
+      "Effect": "Allow"
     }
   ]
 }
@@ -63,7 +62,7 @@ resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
         "ecr:*",
         "logs:*",
         "cloudwatch:*",
-        # "elasticloadbalancing:*"
+        "elasticloadbalancing:*"
       ],
       "Effect": "Allow",
       "Resource": "*"
