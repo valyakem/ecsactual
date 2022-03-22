@@ -12,28 +12,10 @@ data "aws_route53_zone" "arca-blanca-ecsdomain" {
     private_zone                    = false 
 }
 
-
-# resource "aws_route53_record" "abpt_ecs_cert_validation_record" {
-#   for_each = {
-#     for dvo in aws_acm_certificate.arca-blanca-domaincert.domain_validation_options : dvo.domain_name => {
-#       name    = dvo.resource_record_name
-#       record  = dvo.resource_record_value
-#       type    = dvo.resource_record_type
-#       zone_id = dvo.domain_name == "nexgbit.academy" ? data.aws_route53_zone.arca-blanca-ecsdomain.zone_id : data.aws_route53_zone.arca-blanca-ecsdomain.zone_id
-#     }
-#   }
-
-#   allow_overwrite = true
-#   name            = dvo.value.name
-#   records         = [dvo.value.record]
-#   ttl             = 60
-#   type            = dvo.value.type
-#   zone_id         = dvo.value.zone_id
-# }
 resource "aws_route53_record" "abpt_ecs_cert_validation_record" {
     name                            = "${tolist(aws_acm_certificate.arca-blanca-domaincert.domain_validation_options)[0].resource_record_name}" 
     type                            = "${tolist(aws_acm_certificate.arca-blanca-domaincert.domain_validation_options)[0].resource_record_type}"
-    zone_id                         = data.aws_route53_zone.arca-blanca-ecsdomain.zone_id 
+    zone_id                         = "${data.aws_route53_zone.arca-blanca-ecsdomain.zone_id}" 
     records                         = ["${tolist(aws_acm_certificate.arca-blanca-domaincert.domain_validation_options)[0].resource_record_value}"]
     ttl                             = 60
 }

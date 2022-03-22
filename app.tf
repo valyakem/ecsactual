@@ -148,7 +148,7 @@ resource "aws_alb_listener_rule" "abpt_ecs_alb_listener_rule" {
   
   condition {
      host_header {
-      values   = ["${lower(var.abpt_ecs_service_name)}.${aws_route53_zone.arca-blanca-ecsdomain.name}"]
+      values   = ["${lower(var.abpt_ecs_service_name)}.${data.aws_route53_zone.arca-blanca-ecsdomain.name}"]
       }
   }
 }
