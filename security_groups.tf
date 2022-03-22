@@ -8,13 +8,13 @@ resource "aws_security_group" "arcablanca-alb-sg" {
       from_port         = 443
       protocol          = "TCP"
       to_port           = 443 
-      cidr_blocks       = "[${var.arcblanca_internet_cidr}]"
+      cidr_blocks       = ["${var.arcblanca_internet_cidr}"]
   } 
 
   egress {
       from_port         = 0
       protocol          = "-1"
       to_port           = 0 
-      cidr_blocks       = "[${var.arcblanca_internet_cidr}]"
+      cidr_blocks       = ["${var.arcblanca_internet_cidr}"]
   }
 }

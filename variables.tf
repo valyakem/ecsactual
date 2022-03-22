@@ -121,3 +121,8 @@ variable "desired_task_number" {
   default                = 2
 }
 
+variable "arca-blanca-fargate-cluster" {
+  description             = "Arca-Blanca Fargate Cluster description"
+  default                 = "Arca-blanca-fargate-cluster"
+}
+

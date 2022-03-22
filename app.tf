@@ -79,14 +79,14 @@ resource "aws_security_group" "abpt_app_security_group" {
   ingress {
       from_port     = 8080
       protocol      = "TCP"
-      to_to_port    = 8080 
+      to_port    = 8080 
       cidr_blocks   = ["${var.vpc_cidr}"] 
   }
 
   egress {
       from_port     = 0
       protocol      = "-1"
-      to_to_port    = 0 
+      to_port    = 0 
       cidr_blocks   = ["0.0.0.0/0"]  
   }
 

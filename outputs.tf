@@ -7,7 +7,7 @@ output "vpc_cidr_block" {
 }
 
 output "ecs_alb_listener_arn" {
-    value                   = "${aws_alb_listener.abpt_https_listener.arn}"
+    value                   = "${aws_alb_listener.abpt_ecs_https_listener.arn}"
 }
 
 output "cluster_name" {
