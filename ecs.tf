@@ -55,7 +55,7 @@ resource "aws_route53_record" "abpt_ecs_loadbalancer_record" {
 
 resource "aws_iam_role" "abpt_ecs_cluster_role" {
   name                      = "${var.arca-blanca-fargate-cluster}-IAM-Role"
-  assumeassume_role_policy  = <<EOF
+  assume_role_policy  = <<EOF
 {
     "Version":  "2012-10-17"
     "Statement": [

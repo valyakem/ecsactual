@@ -1,4 +1,4 @@
-resource "aws_security_group" "arcablanca-alb-sg" {
+resource "aws_security_groups" "arcablanca-alb-sg" {
   name                  = "${var.arca-blanca-clustername}-ALB-SG"
   description           = "Security group for ALB to traffic for ECS Cluster"
   vpc_id                = "${aws_vpc.arca-blanca-ptvpc.id}"
