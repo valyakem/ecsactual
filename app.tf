@@ -1,49 +1,55 @@
-# data "template_file" "abpt_ecs_task_definition_template" {
-
-#     template = "${file("task_definition.json")}"
-
-#     // these are application variables to be used with our app.
-#      vars = {
-#         task_definition_name = "${var.abpt_ecs_service_name}"
-#         ecs_service_name     = "${var.abpt_ecs_service_name}"
-#         docker_image_url     = "${var.docker_image_url}"
-#         memory               = "${var.abpt_docker_memory}"
-#         docker_container_port= "${var.abpt_docker_container_port}"
-#         arcablanca_pt_profile= "${var.arcablanca_pt_profile}"
-#         region               = "${var.region}"
-#   }
-
-   
-# }
-
 #create a task definition resources for arca blanca and render our json template
 resource "aws_ecs_task_definition" "arcablancaptapp-task-definition" {
-  container_definitions     = jsonencode([
-    {
-      name      = "${var.task_definition_name}"
-      image     = "${var.docker_image_url}"
-      # cpu       = 10
-      # memory    = 512
-      essential = true
-      environment = [{
-        name  = "Arca Blanca App"
-        value = "${var.arcablanca_pt_profile}"
-      }]
-      portMappings = [
-        {
-          containerPort = "${var.abpt_docker_container_port}"
-          hostPort      = "${var.abpt_docker_host_port}"
-        }]
-      logConfiguration  = {
-          logDriver     = "awslogs"
-          options       = {
-            awslogs-group         = "${var.abpt_ecs_service_name}-LogGroup"
-            awslogs-region        = "${var.region}"
-            awslogs-stream-prefix = "${var.abpt_ecs_service_name}-LogGroup-stream"
+    container_definitions = <<DEFINITION
+    [
+      {
+        "name": "${var.task_definition_name}",
+        "image": "${var.docker_image_url}",
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": "${var.abpt_docker_container_port}",
+            "hostPort": "${var.abpt_docker_host_port}"
           }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "${var.abpt_ecs_service_name}-LogGroup",
+            "awslogs-region": "${var.region}",
+            "awslogs-stream-prefix": "${var.abpt_ecs_service_name}-LogGroup-stream"
+          }
+        }
       }
-    }
-  ])
+    ]
+    DEFINITION
+
+  # container_definitions     = jsonencode([
+  #   {
+  #     name      = "${var.task_definition_name}"
+  #     image     = "${var.docker_image_url}"
+  #     # cpu       = 10
+  #     # memory    = 512
+  #     essential = true
+  #     environment = [{
+  #       name  = "Arca Blanca App"
+  #       value = "${var.arcablanca_pt_profile}"
+  #     }]
+  #     portMappings = [
+  #       {
+  #         containerPort = "${var.abpt_docker_container_port}"
+  #         hostPort      = "${var.abpt_docker_host_port}"
+  #       }]
+  #     "logConfiguration": {
+  #         "logDriver": "awslogs",
+  #         options       = {
+  #           awslogs-group         = "${var.abpt_ecs_service_name}-LogGroup"
+  #           awslogs-region        = "${var.region}"
+  #           awslogs-stream-prefix = "${var.abpt_ecs_service_name}-LogGroup-stream"
+  #         }
+  #     }
+  #   }
+  # ])
 
   family                    = "${var.abpt_ecs_service_name}"
   cpu                       = 512
