@@ -19,7 +19,7 @@ resource "aws_alb_listener" "abpt_ecs_https_listener" {
   port                      = 443
   protocol                  = "HTTPS"
   sssl_policy               = "ELBSecurityPolicy-TLS-1-2-2017-01"  
-  certificate_arn           = "${aws_acm.arca-blanca-domaincert.arn}"
+  certificate_arn           = "${aws_acm_certificate.arca-blanca-domaincert.arn}"
 
   default_action {
     type               = "forward"
@@ -44,7 +44,7 @@ resource "aws_alb_target_group" "abpt_ecs_default_tg" {
 resource "aws_route53_record" "abpt_ecs_loadbalancer_record" {
   name                      = "*.${var.ecs_arcablanca_domain}"
   type                      = "A"
-  zone_id                   = "${data.aws_route53_zone.ecs_domain.zone_id}"
+  zone_id                   = "${aws_route53_zone.arca-blanca-ecsdomain.zone_id}"
 
   alias {
     evaluate_target_health  = false

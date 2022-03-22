@@ -126,7 +126,7 @@ resource "aws_ecs_service" "abpt_ecs_service" {
     launch_type                             = "FARGATE" 
 
     network_configuration {
-      subnets           = ["${var.public_subnetslist}"]
+      subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
       security_groups   = "${aws_security_group.abpt_app_security_group.id}"
       assign_public_ip  = true 
     }
