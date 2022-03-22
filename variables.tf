@@ -126,7 +126,7 @@ variable "abpt_docker_memory" {
 }
 variable "abpt_docker_container_port" {
   description           = "port assigned to the container"
-  default               = 8080 
+  default               = 5000 
 } 
 
 #ECS Service Variables
