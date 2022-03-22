@@ -49,6 +49,26 @@ variable "public_subnetslist" {
   type                        = list(string)
   default                     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
+
+variable "Arcablanca-PubRT" {
+  description                 = "Route tables tagging"
+  default                     = "Arca-Blanca" 
+}
+
+variable "Arcablanca-PrivRT" {
+  description                 = "Route tables tagging"
+  default                     = "Arca-Blanca" 
+}
+
+variable "Arcablanca-PrivRT-Assoc" {
+  description                 = "Route tables association tagging"
+  default                     = "Arca-Blanca-PrivRT-Assoc" 
+}
+
+variable "Arcablanca-PubRT-Assoc" {
+  description                 = "Route tables association tagging"
+  default                     = "Arca-Blanca-PubRT-Assoc" 
+}
 #=====================================================================================
 #     ECS (ecs.tf) VARIABLES. Note:Arca Blanca pricing Tool
 #======================================================================================

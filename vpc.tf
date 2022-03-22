@@ -62,7 +62,7 @@ resource "aws_subnet" "private_subnet2" {
 resource "aws_subnet" "private_subnet3" {
   cidr_block                    = "${var.arcablanca_private_subnet_3_cidr}"
   vpc_id                        = "${aws_vpc.arca-blanca-ptvpc.id}"
-  availability_zone             = "us-east-1b"
+  availability_zone             = "us-east-1c"
 
   tags = {
       name = "Arca-Blanca-Private-Subnet-3"
@@ -72,16 +72,16 @@ resource "aws_subnet" "private_subnet3" {
 resource "aws_route_table" "arcablanca_PubRT" {
   vpc_id                    = "${aws_vpc.arca-blanca-ptvpc.id}" 
 
-  tags = {
-      name = "Arca-Blanca_Public_Route_Table"
+     tags = {
+      name = "${var.Arcablanca-PubRT}"
   }
 }
 
 resource "aws_route_table" "arcablanca_PrivateRT" {
   vpc_id                    = "${aws_vpc.arca-blanca-ptvpc.id}" 
 
-  tags = {
-      name = "Arca-Blanca_Private_Route_Table"
+    tags = {
+      name = "${var.Arcablanca-PrivRT}"
   }
 }
 
@@ -90,16 +90,28 @@ resource "aws_route_table" "arcablanca_PrivateRT" {
 resource "aws_route_table_association" "public_subnet1_association" {
   route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
   subnet_id                 = "${aws_subnet.pub_subnet1.id}" 
+
+    tags = {
+      name = "${var.Arcablanca-PubRT-Assoc}-1"
+  }
 }
 
 resource "aws_route_table_association" "public_subnet2_association" {
   route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
-  subnet_id                 = "${aws_subnet.pub_subnet2.id}" 
+  subnet_id                 = "${aws_subnet.pub_subnet2.id}"
+
+     tags = {
+      name = "${var.Arcablanca-PubRT-Assoc}-2"
+  } 
 }
 
 resource "aws_route_table_association" "public_subnet3_association" {
   route_table_id            = "${aws_route_table.arcablanca_PubRT.id}"
   subnet_id                 = "${aws_subnet.pub_subnet3.id}" 
+
+     tags = {
+      name = "${var.Arcablanca-PubRT-Assoc}-2"
+  } 
 }
 
 
@@ -107,16 +119,28 @@ resource "aws_route_table_association" "public_subnet3_association" {
 resource "aws_route_table_association" "private_subnet1_association" {
   route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet1.id}" 
+
+     tags = {
+      name = "${var.Arcablanca-PrivRT-Assoc}-1"
+  } 
 }
 
 resource "aws_route_table_association" "private_subnet2_association" {
   route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet2.id}" 
+
+     tags = {
+      name = "${var.Arcablanca-PrivRT-Assoc}-2"
+  } 
 }
 
 resource "aws_route_table_association" "private_subnet3_association" {
   route_table_id            = "${aws_route_table.arcablanca_PrivateRT.id}"
   subnet_id                 = "${aws_subnet.private_subnet3.id}" 
+
+     tags = {
+      name = "${var.Arcablanca-PrivRT-Assoc}-3"
+  } 
 }
 
 #enable aws_eip and associate it with a chosen ip address
