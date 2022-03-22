@@ -1,6 +1,6 @@
 [
     {
-      "name": "${abpt-task-def}",
+      "name": "${task_definition_name}",
       "image": "440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:49d30de",
       "essential": true,
       "portMappings": [
