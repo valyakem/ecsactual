@@ -63,7 +63,7 @@ resource "aws_iam_role_policy" "abpt_fargate_iam_role_policy" {
         "ecr:*",
         "logs:*",
         "cloudwatch:*",
-        "elasticloadbalancing:*"
+        # "elasticloadbalancing:*"
       ],
       "Effect": "Allow",
       "Resource": "*"
