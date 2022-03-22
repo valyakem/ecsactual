@@ -138,7 +138,7 @@ resource "aws_nat_gateway" "nat_gw" {
         name = "Arcablanca-Production-NAT-Gateway"
     }
     #Making sure there is an eip
-    depends_on = ["aws_eip.arcablanca-eip"]
+    depends_on = [aws_eip.arcablanca-eip]
 }
 
 #Create a route to external world to the private route table
