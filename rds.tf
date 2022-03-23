@@ -65,8 +65,8 @@ resource "aws_db_parameter_group" "arcablanca-pt-rds" {
   family = "postgres8"
 
   parameter {
-    name  = "log_connections"
-    value = "1"
+    name  = "log_temp_files"
+    value = "256"
   }
 }
 
