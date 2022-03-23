@@ -32,7 +32,7 @@ resource "aws_s3_bucket" "bucket-artifact" {
 
 # CODEPIPELINE
 resource "aws_codepipeline" "pipeline" {
-  name     = "pipeline"
+  name     = "arcablanca-app-pipeline"
   role_arn = "${data.aws_iam_role.pipeline_role.arn}"
 
   artifact_store {
@@ -85,9 +85,9 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts = ["build_output"]
 
       configuration = {
-        ClusterName = "clusterDev"
-        ServiceName = "golang-Service"
-        FileName    = "imagedefinitions.json"
+        ClusterName = "${var.abpt_ecs_service_name}"
+        ServiceName = "${var.abpt_ecs_service_name}"
+        FileName    = "task_definition.json"
       }
     }
   }
