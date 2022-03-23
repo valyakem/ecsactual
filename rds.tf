@@ -58,7 +58,7 @@ resource "aws_security_group" "arcablanca_rds_sg" {
 }
 
 
-#==========================PARAMETER  GROUP======================
+#==========================PARAMETER  GROUPs======================
 #-------------------------------------------------------------------
 resource "aws_db_parameter_group" "arcablanca-pt-rds" {
   name   = "arcablanca-pt-rds"
