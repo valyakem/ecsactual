@@ -1,8 +1,128 @@
-# Terraform template for AWS ECS/Fargate
+# Arca BLANCA PRICING TOOL TERRAFORM INFRASTRUCTURE
 
-This terraform setup can be used to setup the AWS infrastructure
-for a dockerized application running on ECS with Fargate launch
-configuration.
+<html>
+<table>
+  <th>Parameter name</th><th>Unit</th>
+<tr>
+  <td>archive_timeout</td><td>8 KB</td>
+</tr>
+</table>
+</html>
+Parameter name
+
+
+
+
+
+s
+authentication_timeout
+
+s
+autovacuum_naptime
+
+s
+autovacuum_vacuum_cost_delay
+
+ms
+bgwriter_delay
+
+ms
+checkpoint_timeout
+
+s
+checkpoint_warning
+
+s
+deadlock_timeout
+
+ms
+effective_cache_size
+
+8 KB
+lock_timeout
+
+ms
+log_autovacuum_min_duration
+
+ms
+log_min_duration_statement
+
+ms
+log_rotation_age
+
+minutes
+log_rotation_size
+
+KB
+log_temp_files
+
+KB
+maintenance_work_mem
+
+KB
+max_stack_depth
+
+KB
+max_standby_archive_delay
+
+ms
+max_standby_streaming_delay
+
+ms
+post_auth_delay
+
+s
+pre_auth_delay
+
+s
+segment_size
+
+8 KB
+shared_buffers
+
+8 KB
+statement_timeout
+
+ms
+ssl_renegotiation_limit
+
+KB
+tcp_keepalives_idle
+
+s
+tcp_keepalives_interval
+
+s
+temp_file_limit
+
+KB
+work_mem
+
+KB
+temp_buffers
+
+8 KB
+vacuum_cost_delay
+
+ms
+wal_buffers
+
+8 KB
+wal_receiver_timeout
+
+ms
+wal_segment_size
+
+8 KB
+wal_sender_timeout
+
+ms
+wal_writer_delay
+
+ms
+wal_receiver_status_interval
+
+s
 
 ## Resources
 

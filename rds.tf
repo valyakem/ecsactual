@@ -64,7 +64,7 @@ resource "aws_db_parameter_group" "arcablanca-pt-rds" {
   family = "postgres13"
 
   parameter {
-    name  = "arcablanca_pt_log_connections"
+    name  = "log_connections"
     value = "1"
   }
 }
