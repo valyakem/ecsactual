@@ -71,13 +71,13 @@ resource "aws_db_parameter_group" "arcablanca-pt-rds" {
 }
 
 
-#==========================DB CREDENTIALS======================
+#==========================DB CREDENTIALSC======================
 #-------------------------------------------------------------------
 variable "db_password" {
   description = "RDS root user password"
   type        = string
   sensitive   = true
-  default = "testdb"
+  default = "+Laravan2010"
 }
 
 variable "parameter_group_name" {
