@@ -11,7 +11,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   password                      = var.db_password
   db_subnet_group_name          = "${aws_db_subnet_group.arcablanca_pt_dbsubnets.id}"
   vpc_security_group_ids        = [aws_security_group.arcablanca_rds_sg.id]
-  parameter_group_name          = "${aws_db_parameter_group.arcablanca-pt-rds.name}"
+  parameter_group_name          = "${var.parameter_group_name}"
   publicly_accessible           = false
   skip_final_snapshot           = true
   auto_minor_version_upgrade    = false
@@ -61,7 +61,7 @@ resource "aws_security_group" "arcablanca_rds_sg" {
 #==========================PARAMETER  GROUPs======================
 #-------------------------------------------------------------------
 resource "aws_db_parameter_group" "arcablanca-pt-rds" {
-  name   = "arcablanca-pt-rds"
+  name   = "${var.parameter_group_name}"
   family = "postgres10"
 
   parameter {
@@ -78,6 +78,11 @@ variable "db_password" {
   type        = string
   sensitive   = true
   default = "testdb"
+}
+
+variable "parameter_group_name" {
+  description           = "Parameter group name" 
+  default               = "arcablancaptrds"
 }
 
 
