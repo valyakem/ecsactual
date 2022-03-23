@@ -129,7 +129,7 @@ resource "aws_ecs_service" "abpt_ecs_service" {
     depends_on      = [aws_eip.arcablanca-eip]
 
     network_configuration {
-      subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+      subnets           = ["${aws_subnet.pub_subnet1.id}", "${aws_subnet.pub_subnet2.id}", "${aws_subnet.pub_subnet3.id}"]
       security_groups   = ["${aws_security_group.abpt_app_security_group.id}"]
       assign_public_ip  = true 
     }
