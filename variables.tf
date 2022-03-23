@@ -176,5 +176,5 @@ variable "build_project" {
 
 variable "uri_repo" {
   type = string
-  default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr"
+  default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:latest"
 }
