@@ -6,7 +6,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   allocated_storage             = 5
   max_allocated_storage         = 100
   engine                        = "postgres"
-  engine_version                = "13.1"
+  engine_version                = "8.0"
   username                      = "arcablanca-rusr"
   password                      = var.db_password
   db_subnet_group_name          = "${aws_db_subnet_group.arcablanca_pt_dbsubnets.id}"
