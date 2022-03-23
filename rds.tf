@@ -6,7 +6,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   allocated_storage             = 5
   max_allocated_storage         = 100
   engine                        = "postgres"
-  engine_version                = "8.0"
+  engine_version                = "10"
   username                      = "arcablanca-rusr"
   password                      = var.db_password
   db_subnet_group_name          = "${aws_db_subnet_group.arcablanca_pt_dbsubnets.id}"
@@ -18,7 +18,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   backup_window                 = "01:00-01:30" 
 }
 
-#==========================DB SUBNET GROUsP======================
+#==========================DB SUBNET GROUP======================
 #-------------------------------------------------------------------
 resource "aws_db_subnet_group" "arcablanca_pt_dbsubnets" {
   name       = "main"
