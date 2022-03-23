@@ -178,3 +178,14 @@ variable "uri_repo" {
   type = string
   default ="440153443065.dkr.ecr.us-east-1.amazonaws.com/testecr:latest"
 }
+
+#================RDS VARIABLES"
+variable "rdsidentifier" {
+  description                   = "A unique name given to our rds instance"
+  default                       = "arcablanca-pt-rds" 
+}
+
+variable "instance_class" {
+  description                   = "Chosen instance type for your database e.g., db.t3.micro, db.t2.micro etc"
+  default                       = "db.t3.micro"
+}
