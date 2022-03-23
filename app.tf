@@ -126,6 +126,8 @@ resource "aws_ecs_service" "abpt_ecs_service" {
     cluster                                 = "${var.arca-blanca-clustername}"
     launch_type                             = "FARGATE" 
 
+    depends_on      = ["${aws_subnet.pub_subnet1}", "${aws_subnet.pub_subnet2}", "${aws_subnet.pub_subnet3}"]
+
     network_configuration {
       subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
       security_groups   = ["${aws_security_group.abpt_app_security_group.id}"]
