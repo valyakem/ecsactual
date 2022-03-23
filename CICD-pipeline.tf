@@ -3,7 +3,7 @@ resource "aws_codecommit_repository" "repo" {
   repository_name = var.repo_name
 }
 
-# CODEBUILD
+# CODEBUILD#
 resource "aws_codebuild_project" "repo-project" {
   name         = "${var.build_project}"
   service_role = "${aws_iam_role.codebuild-role.arn}"
