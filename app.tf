@@ -78,9 +78,9 @@ resource "aws_security_group" "abpt_app_security_group" {
   vpc_id                            = "${aws_vpc.arca-blanca-ptvpc.id}"
 
   ingress {
-      from_port     = 8080
+      from_port     = 5000
       protocol      = "TCP"
-      to_port    = 8080 
+      to_port    = 5000 
       cidr_blocks   = ["${var.vpc_cidr}"] 
   }
 
@@ -106,7 +106,7 @@ resource "aws_alb_target_group" "abpt_ecs_app_target_group" {
 // provide health check data if any  
   health_check {
     path                = "/"
-    port                = 8080
+    port                = 5000
     protocol            = "HTTP"
     healthy_threshold   = 3
     unhealthy_threshold = 3
