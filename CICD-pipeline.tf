@@ -3,7 +3,7 @@ resource "aws_codecommit_repository" "repo" {
   repository_name = var.repo_name
 }
 
-# CODEBUILDas
+# CODEBUILD
 resource "aws_codebuild_project" "repo-project" {
   name         = "${var.build_project}"
   service_role = "${aws_iam_role.codebuild-role.arn}"
@@ -27,12 +27,12 @@ resource "aws_codebuild_project" "repo-project" {
 # S3 BUCKET FOR ARTIFACTORY_STORE
 resource "aws_s3_bucket" "bucket-artifact" {
   bucket = "eroz-artifactory-bucket"
-  #acl    = ""
+  acl    = "private"
 }
 
 # CODEPIPELINE
 resource "aws_codepipeline" "pipeline" {
-  name     = "arcablanca-app-pipeline"
+  name     = "pipeline"
   role_arn = "${data.aws_iam_role.pipeline_role.arn}"
 
   artifact_store {
@@ -46,7 +46,7 @@ resource "aws_codepipeline" "pipeline" {
       name             = "Source"
       category         = "Source"
       owner            = "AWS"
-      provider         = "codecommit"
+      provider         = "CodeCommit"
       version          = "1"
       output_artifacts = ["source_output"]
 
@@ -85,9 +85,9 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts = ["build_output"]
 
       configuration = {
-        ClusterName = "${var.abpt_ecs_service_name}"
-        ServiceName = "${var.abpt_ecs_service_name}"
-        FileName    = "task_definition.json"
+        ClusterName = "clusterDev"
+        ServiceName = "golang-Service"
+        FileName    = "imagedefinitions.json"
       }
     }
   }
