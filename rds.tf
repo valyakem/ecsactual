@@ -52,7 +52,7 @@ resource "aws_security_group" "arcablanca_rds_sg" {
       from_port         = 0
       to_port           = 0
       protocol          = "tcp"
-      ipv6_cidr_blocks = ["0.0.0.0/0"]
+      cidr_blocks       = ["0.0.0.0/0"]
   }
 }
 
