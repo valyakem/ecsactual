@@ -27,7 +27,7 @@ resource "aws_codebuild_project" "repo-project" {
 # S3 BUCKET FOR ARTIFACTORY_STORE
 resource "aws_s3_bucket" "bucket-artifact" {
   bucket = "eroz-artifactory-bucket"
-  acl    = "private"
+  acl    = null
 }
 
 # CODEPIPELINE
