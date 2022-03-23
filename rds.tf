@@ -18,7 +18,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   backup_window                 = "01:00-01:30" 
 }
 
-#==========================DB SUBNET GROUPs======================
+#==========================DB SUBNET GROUP======================
 #-------------------------------------------------------------------
 resource "aws_db_subnet_group" "arcablanca_pt_dbsubnets" {
   name       = "main"
