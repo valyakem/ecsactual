@@ -6,7 +6,7 @@ resource "aws_db_instance" "arcablanca_pt_rds" {
   allocated_storage             = 5
   max_allocated_storage         = 100
   engine                        = "postgres"
-  engine_version                = "10"
+  engine_version                = "8"
   username                      = "arcablanca-rusr"
   password                      = var.db_password
   db_subnet_group_name          = "${aws_db_subnet_group.arcablanca_pt_dbsubnets.id}"
@@ -62,7 +62,7 @@ resource "aws_security_group" "arcablanca_rds_sg" {
 #-------------------------------------------------------------------
 resource "aws_db_parameter_group" "arcablanca-pt-rds" {
   name   = "arcablanca-pt-rds"
-  family = "postgres10"
+  family = "postgres8"
 
   parameter {
     name  = "log_connections"
