@@ -118,6 +118,13 @@ resource "aws_alb_target_group" "abpt_ecs_app_target_group" {
   }
 }
 
+
+# resource "aws_lb_target_group_attachment" "test" {
+#   target_group_arn = aws_alb_target_group.abpt_ecs_app_target_group.arn
+#   target_id        = aws_instance.test.id
+#   port             = 80
+# }
+
 # ECS services for our fargate implementation n
 resource "aws_ecs_service" "abpt_ecs_service" {
     name                                    = "${var.abpt_ecs_service_name}" 
