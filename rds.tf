@@ -86,7 +86,7 @@ variable "parameter_group_name" {
 }
 
 
-#==========================DB OUTPUTS======================
+#==========================DB OUTPUT======================
 #-------------------------------------------------------------------
 output "rds_hostname" {
   description = "RDS instance hostname"
