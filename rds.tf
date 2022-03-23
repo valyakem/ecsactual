@@ -62,7 +62,7 @@ resource "aws_security_group" "arcablanca_rds_sg" {
 #-------------------------------------------------------------------
 resource "aws_db_parameter_group" "arcablanca-pt-rds" {
   name   = "arcablanca-pt-rds"
-  family = "postgres13"
+  family = "postgres10"
 
   parameter {
     name  = "log_connections"
